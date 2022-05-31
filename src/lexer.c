@@ -6,43 +6,62 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 19:40:49 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/05/15 19:27:34 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/05/31 11:57:21 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include <stdio.h>
+#include "lexer.h"
 
-int	count_tokens(char *s)
+int	count_matrix(char *s)
 {
+	int	i;
+	int	flag;
+	int	count;
+
+	i = 0;
+	count = 0;
+	flag = 0;
+	while (s[i])
+	{	
+		if (s[i] == '|')
+			break;
+		 if (s[i] == ' ' && flag == 0 && s[i - 1] != '"' && s[i - 1] != '\'')
+		 	count++;
+		if ((s[i] == '"' || s[i] == '\'') && flag == 0)
+		{
+			flag = 1;
+			count++;
+		}
+		else
+			if ((s[i] == '"' || s[i] == '\'') && flag == 1)
+				flag = 0;
+		i++;
+	}
+	return (count);
 }
 
-char	**lexer_main(char *s)
+void	create_token(t_tree **branch, char *s)
 {
-	char	*begin;
-	char	*end;
-	char	**tokens;
-	int		c_tokens;
+	int	size;
 
-	c_tokens = count_tokens(s);
-	tokens = malloc(2 * sizeof(char *));
-	begin = ft_strchr(s, '"');
-	if (begin)
-	{
-		end = ft_strchr(begin + 1, '"');
-		if (!end)
-			exit(EXIT_FAILURE);
-		tokens[0] = malloc(ft_strlen(s) - ft_strlen(begin) + 1);
-		ft_strlcpy(tokens[0], s, (ft_strlen(s) - ft_strlen(begin) + 1));
-		tokens[1] = malloc(ft_strlen(begin) - ft_strlen(end) + 1);
-		ft_strlcpy(tokens[1], begin + 1, ft_strlen(begin) - ft_strlen(end));
-	}
+	size = count_matrix(s);
+	printf("%d\n", size);
+	//(*branch)->token = malloc((size + 1) * sizeof(char *));
+	(void)branch;
+}
+
+t_tree	*lexer_main(char *s)
+{
+	t_tree	*tokens;
+
+	tokens = NULL;
+	create_token(&tokens, s);
 	return (tokens);
 }
 
 int	main(void)
 {
-	char	str[100] = "cd \"hello world\" jkshdasj  hajskdhiuasg";
+	char	str[100] = "cd \"hello world\" | jkshdasj | hajskdhiuasg";
 
 	lexer_main(str);
 	return (0);
