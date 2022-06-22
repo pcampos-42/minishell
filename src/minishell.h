@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/06/07 11:40:33 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/06/22 11:26:49 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	print_env(t_list *env, int fd);
 char	**env_matrix(t_list *env);
 
 //------------------------------BUILTINS------------------------------//
-void	builtins(t_tree *branch, t_list **env);
-void	echo_func(t_tree *branch);
-void	pwd_func(t_tree *branch);
-void	env_func(t_tree *branch, t_list *env);
-void	cd_func(t_tree *branch, t_list **env);
+void	builtins(t_tree branch, t_list *env);
+void	echo_func(t_tree branch);
+void	pwd_func(t_tree branch);
+void	env_func(t_tree branch, t_list *env);
+void	cd_func(t_tree branch, t_list **env);
 
 //------------------------------BUILTINS2------------------------------//
 
