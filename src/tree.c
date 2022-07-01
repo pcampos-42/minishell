@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tree.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:38:17 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/05/25 11:43:47 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:37:24 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "minishell.h"
 
 void	tree_add_root(t_tree **root, t_tree *new_root)
 {

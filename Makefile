@@ -3,17 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+         #
+#    By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/05/14 21:10:09 by lucas-ma         ###   ########.fr        #
+#    Updated: 2022/06/22 11:46:46 by pcampos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ################ PROGRAM ################
 
 NAME	    =    minishell
-NAME_BONUS =
 
 ################ TERMINAL ###############
 
@@ -39,13 +38,11 @@ _BIN    =        ./
 ############### COMPILER ################
 
 CC        =        gcc
-CF        =        -Wall -Werror -Wextra      
-
+CF        =        -Wall -Werror -Wextra -I ~/.brew/opt/readline/include -L ~/.brew/opt/readline/lib -lreadline
 ################ FILES ##################
 
-SRCS    =        $(_SRC)lexer.c
+SRCS    =        $(_SRC)minishell_main.c $(_SRC)env.c $(_SRC)builtins.c
 OBJS    =        $(patsubst $(_SRC)%.c,$(_OBJ)%.o,$(SRCS))
-OBJS_BONUS	=	 $(patsubst $(_SRC)%.c,$(_OBJ)%.o,$(SRCS_BONUS))
 DEPS    =        libft.a
 LIBS    =        -lft
 
@@ -58,9 +55,6 @@ $(_OBJ)%.o: $(_SRC)%.c
 
 $(NAME): deps $(OBJS)
 	$(CC) $(CF) $(LIBS) $(OBJS) -o $(NAME) -L $(_LIB)
-
-$(NAME_BONUS): deps $(OBJS_BONUS)
-	$(CC) $(CF) $(LIBS) $(OBJS_BONUS) -o $(NAME_BONUS) -L $(_LIB)
 
 ################ DEPS ###################
 
@@ -97,4 +91,4 @@ re: fclean all
 
 rebonus: fclean bonus
 
-.PHONY: all deps clean fclean re 
+.PHONY: all deps clean fclean re

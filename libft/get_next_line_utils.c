@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 20:12:25 by rafernan          #+#    #+#             */
-/*   Updated: 2022/05/04 13:49:18 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/06/07 10:11:28 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/*
 char	*ft_strchr(const char *s, int c)
 {
 	char	*tmp;
@@ -30,6 +31,7 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return (NULL);
 }
+*/
 
 void	*ft_memcpy(const void *dst, const void *src, size_t n)
 {
@@ -60,7 +62,7 @@ size_t	new_strlen(const char *s)
 	}
 	return (i);
 }
-
+/*
 char	*ft_strdup(const char *s)
 {
 	char	*str;
@@ -106,3 +108,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ptr[s1len + s2len] = '\0';
 	return (ptr);
 }
+*/

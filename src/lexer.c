@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 19:40:49 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/05/31 11:57:21 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:37:34 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "minishell.h"
 
 int	count_matrix(char *s)
 {
@@ -22,11 +22,11 @@ int	count_matrix(char *s)
 	count = 0;
 	flag = 0;
 	while (s[i])
-	{	
+	{
 		if (s[i] == '|')
-			break;
-		 if (s[i] == ' ' && flag == 0 && s[i - 1] != '"' && s[i - 1] != '\'')
-		 	count++;
+			break ;
+		if (s[i] == ' ' && flag == 0 && s[i - 1] != '"' && s[i - 1] != '\'')
+			count++;
 		if ((s[i] == '"' || s[i] == '\'') && flag == 0)
 		{
 			flag = 1;
