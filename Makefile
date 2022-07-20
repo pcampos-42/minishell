@@ -6,7 +6,7 @@
 #    By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/06/22 11:46:46 by pcampos-         ###   ########.fr        #
+#    Updated: 2022/07/20 12:08:02 by pcampos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,14 +37,12 @@ _BIN    =        ./
 
 ############### COMPILER ################
 
-CC        =        gcc
-CF        =        -Wall -Werror -Wextra -I ~/.brew/opt/readline/include -L ~/.brew/opt/readline/lib -lreadline
-################ FILES ##################
-
-SRCS    =        $(_SRC)minishell_main.c $(_SRC)env.c $(_SRC)builtins.c
+CC      =        gcc
+CF      =        -Wall -Werror -Wextra
+SRCS    =        $(_SRC)minishell_main.c $(_SRC)env.c $(_SRC)builtins.c $(_SRC)builtins2.c
 OBJS    =        $(patsubst $(_SRC)%.c,$(_OBJ)%.o,$(SRCS))
 DEPS    =        libft.a
-LIBS    =        -lft
+LIBS    =        -lft -lreadline
 
 ################ RULES ##################
 
@@ -54,7 +52,7 @@ $(_OBJ)%.o: $(_SRC)%.c
 	$(CC) $(CF) -c $< -o $@
 
 $(NAME): deps $(OBJS)
-	$(CC) $(CF) $(LIBS) $(OBJS) -o $(NAME) -L $(_LIB)
+	$(CC) $(CF)  $(OBJS) -o $(NAME) -L $(_LIB) $(LIBS)
 
 ################ DEPS ###################
 
@@ -75,16 +73,11 @@ $(_SRC):
 	$(MKD) $(_SRC)
 
 $(_BIN):
-	$(MKD) $(_BIN)
-
-################### CLEAN ###############
-
-clean:
-	$(RMV) -r $(_OBJ)
+	$(MKD) $(_BIN)libs/libft.a
 
 fclean: clean
 	$(RMV) -r $(NAME)
-	$(RMV) -r $(NAME_BONUS)
+
 	$(RMV) -r $(_LIB)libft.a
 
 re: fclean all

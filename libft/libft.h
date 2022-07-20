@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:11:25 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/06/07 10:10:49 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/07/20 10:49:23 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include	<unistd.h>
 # include	<stdlib.h>
-
-# include "get_next_line.h"
 
 typedef struct s_list
 {

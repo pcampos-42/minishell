@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:38:09 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/06/22 11:42:20 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/07/20 12:05:29 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ void	builtins(t_tree branch, t_list *env)
 		cd_func(branch, &env);
 	// if (!ft_strncmp(branch->token[0], "exit", 4))
 	// 	exit_func(branch, env);
-	// if (!ft_strncmp(branch->token[0], "export", 6))
-	// 	export_func();
-	// if (!ft_strncmp(branch->token[0], "unset", 5))
-	// 	unset_func();
+	if (!ft_strncmp(branch.token[0], "export", 6))
+		export_func(branch, &env);
+	 if (!ft_strncmp(branch.token[0], "unset", 5))
+	 	unset_func(branch, &env);
 }

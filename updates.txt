@@ -1,3 +1,5 @@
-builtins v1.0 - Foram feitos os builtins mas não testados
+builtins v1.0.0- Foram feitos os builtins mas não testados
 
-builtins v1.1 - Foram testados os builtins e foram feitas pequenas alterações
+builtins v1.0.1- Foram testados os builtins e foram feitas pequenas alterações
+
+builtins v1.1.0 - Foram criados os builtis export e unset (mas não foram testados)
