@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/07/20 12:13:24 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/07/21 09:41:55 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 //------------------------------STRUCTS------------------------------//
 typedef struct s_tree
 {
-	char			**token;
+	void			*token;
 	int				type;
 	struct s_tree	*left;
 	struct s_tree	*right;

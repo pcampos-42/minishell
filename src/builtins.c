@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:38:09 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/07/20 12:05:29 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/07/21 11:01:18 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	echo_func(t_tree branch)
 	int	fd;
 
 	if (branch.right)
-		fd = open(branch.right->token[0], O_WRONLY, O_APPEND);
+		fd = open(branch.right->token, O_WRONLY, O_APPEND);
 	else
 		fd = 1;
 	if (fd < 0)
@@ -30,10 +30,10 @@ void	echo_func(t_tree branch)
 		ft_putendl_fd(branch.token[0], 2);
 		return ;
 	}
-	if (!ft_strncmp(branch.token[1], "-n", 2))
-		ft_putstr_fd(branch.token[2], fd);
+	if (!ft_strncmp(branch.token, "-n", 2))
+		ft_putstr_fd(branch.token, fd);
 	else
-		ft_putendl_fd(branch.token[2], fd);
+		ft_putendl_fd(branch.token, fd);
 	if (fd > 2)
 		close(fd);
 }

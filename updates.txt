@@ -1,5 +1,10 @@
-builtins v1.0.0- Foram feitos os builtins mas não testados
+builtins v1.0.0 - Foram feitos os builtins mas não testados
 
-builtins v1.0.1- Foram testados os builtins e foram feitas pequenas alterações
+builtins v1.0.1 - Foram testados os builtins e foram feitas pequenas alterações
 
 builtins v1.1.0 - Foram criados os builtis export e unset (mas não foram testados)
+
+builtins v1.1.1 - Alterações na binary tree, o token passou de char** para void*
+                   o que leva a alterações nas funções echo, pwd, env, cd, e export.
+                  Alterações feitas na função export
+                  As alterações para a função echo estão no ficheiro teste.c
