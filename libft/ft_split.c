@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 10:14:37 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/07/21 11:03:19 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/07/22 11:14:25 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ static int	ft_issep(char s, char c)
 	return (s == c || s == '\0');
 }
 
-static int	countwords(char const *s, char c)
-{
-	int	index;
-	int	words;
-
-	index = 0;
-	words = 0;
-	while (s[index] != '\0')
-	{
-		if (ft_issep(s[index], c) == 0 && ft_issep(s[index + 1], c) == 1)
-			words++;
-		index++;
-	}
-	return (words);
-}
+//static int	countwords(char const *s, char c)
+//{
+//	int	index;
+//	int	words;
+//
+//	index = 0;
+//	words = 0;
+//	while (s[index] != '\0')
+//	{
+//		if (ft_issep(s[index], c) == 0 && ft_issep(s[index + 1], c) == 1)
+//			words++;
+//		index++;
+//	}
+//	return (words);
+//}
 
 static void	ft_cpywords(char *dest, char *src, char c)
 {
@@ -82,7 +82,7 @@ char	**ft_split(char *s, char c)
 
 	if (!s)
 		return (NULL);
-	words = countwords(s, c);
+	words = 2;
 	matriz = malloc((words + 1) * sizeof(char *));
 	if (!matriz)
 		return (NULL);

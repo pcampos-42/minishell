@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/07/21 09:41:55 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:21:01 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ void	env_func(t_tree branch, t_list *env);
 void	cd_func(t_tree branch, t_list **env);
 
 //------------------------------BUILTINS2------------------------------//
-void	export_func(t_tree branch, t_list **env);
 void	unset_func(t_tree branch, t_list **env);
+
+//------------------------------EXPORT_FUNC------------------------------//
+void	export_func(t_tree branch, t_list **env);
+char	**ft_seperate(char *str, char c);
 
 #endif
