@@ -6,28 +6,27 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/07/21 09:42:28 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/07/26 12:17:24 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	create_fake_tree(t_tree *root, char **av, int ac)
-{
-	(void)ac;
-	root->token = av[1];
-}
-
 int	main(int ac, char **av, char **envp)
 {
-	char	*str;
+	//char	*str;
 	t_list	*env;
 	t_tree	root;
 
-	get_env(&env, envp);
-	create_fake_tree(&root, av, ac);
-	//(void)ac;
+	//get_env(&env, envp);
+	env = NULL;
+	root.token = av;
+	//printf("%s\n", ((char **)(root.token))[1]);
+	//printf("%s\n", ((char **)(root.token))[2]);
+	builtins(root, env);
+	(void)ac;
 	//(void)av;
+	(void)envp;
 	//while (1)
 	//{
 	//	str = readline("CAREQUINHA_SHELL > ");
