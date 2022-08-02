@@ -6,7 +6,7 @@
 #    By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/07/20 12:08:02 by pcampos-         ###   ########.fr        #
+#    Updated: 2022/08/02 11:17:18 by pcampos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ _BIN    =        ./
 
 CC      =        gcc
 CF      =        -Wall -Werror -Wextra
-SRCS    =        $(_SRC)minishell_main.c $(_SRC)env.c $(_SRC)builtins.c $(_SRC)builtins2.c
+SRCS    =        $(_SRC)minishell_main.c $(_SRC)env.c $(_SRC)builtins.c \
+				 $(_SRC)export_func.c $(_SRC)cd_func.c
 OBJS    =        $(patsubst $(_SRC)%.c,$(_OBJ)%.o,$(SRCS))
 DEPS    =        libft.a
 LIBS    =        -lft -lreadline

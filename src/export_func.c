@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:15:49 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/07/22 15:19:58 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:39:35 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ void	export_func(t_tree branch, t_list **env)
 
 	tmp = ft_seperate(((char **)(branch.token))[1], '=');
 	newvar = ft_strjoin(tmp[0], tmp[1]);
-	printf("%s\n\n", newvar);
 	ft_lstadd_back(env, ft_lstnew(newvar));
 }

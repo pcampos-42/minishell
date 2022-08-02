@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:38:09 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/07/26 12:17:08 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:17:05 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,31 +82,21 @@ void	env_func(t_tree branch, t_list *env)
 		close(fd);
 }
 
-//testado sem erros detetados
-//deve ser testado melhor os leaks
-void	cd_func(t_tree branch, t_list **env)
+//falta testar
+void	unset_func(t_tree branch, t_list **env)
 {
 	t_list	*tmp;
-	char	*pwd;
+	t_list	*tmp2;
 
 	tmp = *env;
-	pwd = getcwd(NULL, 0);
-	while (ft_strncmp((*env)->content, "OLDPWD", 6) != 0 && (*env)->next)
-		(*env) = (*env)->next;
-	if (ft_strncmp((*env)->content, "OLDPWD", 6) != 0)
-		(*env) = (*env)->next;
-	(*env)->content = ft_strjoin("OLDPWD=/", pwd);
-	chdir(((char **)(branch.token))[1]);
-	free (pwd);
-	pwd = getcwd(NULL, 0);
-	(*env) = tmp;
-	while (ft_strncmp((*env)->content, "PWD", 3) != 0 && (*env)->next)
-		(*env) = (*env)->next;
-	if (ft_strncmp((*env)->content, "PWD", 3) != 0)
-		(*env) = (*env)->next;
-	(*env)->content = ft_strjoin("PWD=/", pwd);
-	free (pwd);
-	pwd_func(branch);
+	while (ft_strncmp(tmp->next->content, branch.left->token,
+			ft_strlen(tmp->next->content)) && tmp->next != NULL)
+		tmp = tmp->next;
+	tmp2 = tmp;
+	if (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp2->next = tmp->next;
+	ft_lstdelone(tmp, free);
 }
 
 void	builtins(t_tree branch, t_list *env)
@@ -120,7 +110,7 @@ void	builtins(t_tree branch, t_list *env)
 	if (!ft_strncmp(((char **)(branch.token))[0], "env", 3))
 		env_func(branch, env);
 	else
-	if (!ft_strncmp(((char **)(branch.token))[0], "cd", 2))
+	if (!ft_strncmp(((char **)(branch.token))[1], "cd", 2))
 		cd_func(branch, &env);
 	else
 	// if (!ft_strncmp(b((char **)(branch.token))[0], "exit", 4))

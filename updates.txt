@@ -13,3 +13,5 @@ builtins v1.1.2 - testagem e alterações no export
 
 builtins v1.1.3 - função dos builtins testada com o builin echo (parece tar tudo bem)
                 - função dos builtins testada com o builin pwd (parece tar tudo bem)
+
+builtins v1.1.4 - alterações na função CD
