@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 10:58:02 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/03 15:50:51 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/05 11:15:10 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int check_valid_path(t_tree branch)
 {
-    if (access(((char **)(branch.token))[2], F_OK) < 0)
+    if (access(((char **)(branch.token))[1], F_OK) < 0)
 	{
-		printf("Can´t access %s\n", ((char **)(branch.token))[2]);
+		printf("Can´t access %s\n", ((char **)(branch.token))[1]);
 		return (1);
 	}
     else
@@ -59,7 +59,7 @@ void	cd_func(t_tree branch, t_list **env)
 			tmp = tmp->next;
 	}
 	(*env)->content = ft_strjoin("OLDPWD=/", pwd);
-	if(chdir(((char **)(branch.token))[2]) == -1)
+	if(chdir(((char **)(branch.token))[1]) == -1)
 		printf("Deu merda\n");
 	free (pwd);
 	pwd = getcwd(NULL, 0);
