@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:38:09 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/02 11:17:05 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/03 15:49:16 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,19 @@ void	echo_func(t_tree branch)
 {
 	int	fd;
 
-	if (branch.right)
-		fd = open(branch.right->token, O_WRONLY, O_APPEND);
-	else
-		fd = 1;
+	fd = 1;
+	//if (branch.right->token)
+	//	fd = open(branch.right->token, O_WRONLY, O_APPEND);
 	if (fd < 0)
 	{
 		ft_putstr_fd("Error with comand: ", 2);
-		ft_putendl_fd(((char **)(branch.token))[0], 2);
+		ft_putendl_fd(((char **)(branch.token))[1], 2);
 		return ;
 	}
-	if (ft_strncmp(((char **)(branch.token))[1], "-n", 2))
+	if (ft_strncmp(((char **)(branch.token))[2], "-n", 2))
 		ft_putstr_fd(((char **)(branch.token))[2], fd);
 	else
-		ft_putendl_fd(((char **)(branch.token))[2], fd);
+		ft_putendl_fd(((char **)(branch.token))[3], fd);
 	if (fd > 2)
 		close(fd);
 }
@@ -44,10 +43,9 @@ void	pwd_func(t_tree branch)
 	char	*tmp;
 	int		fd;
 
-	if (branch.right)
-		fd = open(branch.right->token, O_WRONLY, O_TRUNC);
-	else
-		fd = 1;
+	fd = 1;
+	//if (branch.right)
+	//	fd = open(branch.right->token, O_WRONLY, O_TRUNC);
 	if (fd < 0)
 	{
 		ft_putstr_fd("Error with comand: ", 2);
@@ -67,14 +65,13 @@ void	env_func(t_tree branch, t_list *env)
 {
 	int		fd;
 
-	if (branch.right)
-		fd = open(branch.right->token, O_WRONLY, O_APPEND);
-	else
-		fd = 1;
+	fd = 1;
+	//if (branch.right)
+	//	fd = open(branch.right->token, O_WRONLY, O_APPEND);
 	if (fd < 0)
 	{
 		ft_putstr_fd("Error with comand: ", 2);
-		ft_putendl_fd(((char **)(branch.token))[0], 2);
+		ft_putendl_fd(((char **)(branch.token))[1], 2);
 		return ;
 	}
 	print_env(env, fd);
@@ -101,13 +98,13 @@ void	unset_func(t_tree branch, t_list **env)
 
 void	builtins(t_tree branch, t_list *env)
 {
-	if (!ft_strncmp(((char **)(branch.token))[0], "echo", 4))
+	if (!ft_strncmp(((char **)(branch.token))[1], "echo", 4))
 		echo_func(branch);
 	else
-	if (!ft_strncmp(((char **)(branch.token))[0], "pwd", 3))
+	if (!ft_strncmp(((char **)(branch.token))[1], "pwd", 3))
 		pwd_func(branch);
 	else
-	if (!ft_strncmp(((char **)(branch.token))[0], "env", 3))
+	if (!ft_strncmp(((char **)(branch.token))[1], "env", 3))
 		env_func(branch, env);
 	else
 	if (!ft_strncmp(((char **)(branch.token))[1], "cd", 2))
@@ -116,7 +113,7 @@ void	builtins(t_tree branch, t_list *env)
 	// if (!ft_strncmp(b((char **)(branch.token))[0], "exit", 4))
 	// 	exit_func(branch, env);
 	//else
-	if (!ft_strncmp(((char **)(branch.token))[0], "export", 6))
+	if (!ft_strncmp(((char **)(branch.token))[1], "export", 6))
 		export_func(branch, &env);
 	else
 	if (!ft_strncmp(((char **)(branch.token))[0], "unset", 5))

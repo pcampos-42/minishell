@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 10:58:02 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/02 14:02:04 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/03 15:50:51 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	cd_func(t_tree branch, t_list **env)
 		while (tmp->next && ft_strncmp(tmp->content, "OLDPWD=/", 8) != 0)
 			tmp = tmp->next;
 	}
-	printf("%s\n\n", (char *)tmp->content);
 	(*env)->content = ft_strjoin("OLDPWD=/", pwd);
 	if(chdir(((char **)(branch.token))[2]) == -1)
 		printf("Deu merda\n");
@@ -69,4 +68,5 @@ void	cd_func(t_tree branch, t_list **env)
 		tmp = tmp->next;
 	tmp->content = ft_strjoin("PWD=/", pwd);
 	free (pwd);
+	print_env(*env, 1);
 }
