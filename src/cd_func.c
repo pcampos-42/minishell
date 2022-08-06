@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 10:58:02 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/05 11:15:10 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/06 10:06:10 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,4 @@ void	cd_func(t_tree branch, t_list **env)
 		tmp = tmp->next;
 	tmp->content = ft_strjoin("PWD=/", pwd);
 	free (pwd);
-	print_env(*env, 1);
 }

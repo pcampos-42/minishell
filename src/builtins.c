@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:38:09 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/05 11:30:20 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/06 10:00:22 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,10 @@ void	unset_func(t_tree branch, t_list **env)
 
 void	builtins(t_tree branch, t_list *env)
 {
-		printf("aqui\n");
 	if (!ft_strncmp(((char **)(branch.token))[0], "echo", 4))
 		echo_func(branch);
 	else if (!ft_strncmp(((char **)(branch.token))[0], "pwd", 3))
-	{
-		printf("aqui 2\n");
 		pwd_func(branch);
-		printf("aqui 3\n");
-	}
 	else if (!ft_strncmp(((char **)(branch.token))[0], "env", 3))
 		env_func(branch, env);
 	else if (!ft_strncmp(((char **)(branch.token))[0], "cd", 2))

@@ -17,3 +17,5 @@ builtins v1.1.3 - função dos builtins testada com o builin echo (parece tar tu
 builtins v1.1.4 - alterações na função CD
 
 builtins v1.2.0 - tentativa de integração do readline, o echo funciona bem o resto está por testar
+
+builtins v1.2.1 - pwd, enc e cd testados. erro detetado na função export
