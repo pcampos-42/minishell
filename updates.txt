@@ -18,4 +18,6 @@ builtins v1.1.4 - alterações na função CD
 
 builtins v1.2.0 - tentativa de integração do readline, o echo funciona bem o resto está por testar
 
-builtins v1.2.1 - pwd, enc e cd testados. erro detetado na função export
+builtins v1.2.1 - pwd, env e cd testados. erro detetado na função export
+
+builtins v1.2.2 - correção no print_env que afinal não era erro do export. Segfault no unset

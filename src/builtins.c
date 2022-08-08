@@ -6,16 +6,12 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:38:09 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/06 10:00:22 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/08 12:42:20 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//Cada funcao tem comentario com o seu status
-//mas no geral falta tratar dos erros
-
-//testado sem erros detetados
 void	echo_func(t_tree branch)
 {
 	int	fd;
@@ -37,7 +33,6 @@ void	echo_func(t_tree branch)
 		close(fd);
 }
 
-//testado sem erros detetados
 void	pwd_func(t_tree branch)
 {
 	char	*tmp;
@@ -60,7 +55,6 @@ void	pwd_func(t_tree branch)
 		close(fd);
 }
 
-//testado sem erros detetados
 void	env_func(t_tree branch, t_list *env)
 {
 	int		fd;
@@ -77,23 +71,6 @@ void	env_func(t_tree branch, t_list *env)
 	print_env(env, fd);
 	if (fd > 2)
 		close(fd);
-}
-
-//falta testar
-void	unset_func(t_tree branch, t_list **env)
-{
-	t_list	*tmp;
-	t_list	*tmp2;
-
-	tmp = *env;
-	while (ft_strncmp(tmp->next->content, branch.left->token,
-			ft_strlen(tmp->next->content)) && tmp->next != NULL)
-		tmp = tmp->next;
-	tmp2 = tmp;
-	if (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp2->next = tmp->next;
-	ft_lstdelone(tmp, free);
 }
 
 void	builtins(t_tree branch, t_list *env)

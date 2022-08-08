@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/08/02 11:13:01 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/08 12:43:47 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,8 @@ char	**ft_seperate(char *str, char c);
 //------------------------------CD_FUNC------------------------------//
 void	cd_func(t_tree branch, t_list **env);
 int 	check_valid_path(t_tree branch);
+
+//------------------------------UNSET_FUNC------------------------------//
+void	unset_func(t_tree branch, t_list **env);
 
 #endif

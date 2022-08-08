@@ -6,13 +6,11 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:15:49 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/01 11:39:35 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/08 10:15:33 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//testado e aparentemente sem erros
 
 char	**ft_seperate(char *str, char c)
 {

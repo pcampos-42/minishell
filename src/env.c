@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:38:52 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/06/02 15:43:16 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/08 09:56:13 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,7 @@ void	print_env(t_list *env, int fd)
 		ft_putendl_fd(tmp->content, fd);
 		tmp = tmp->next;
 	}
-	if (tmp->next != NULL)
-	{
-		tmp = tmp->next;
-		ft_putendl_fd(tmp->content, fd);
-	}
+	ft_putendl_fd(tmp->content, fd);
 }
 
 char	**env_matrix(t_list *env)
