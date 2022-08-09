@@ -6,13 +6,13 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 12:42:27 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/08 14:49:29 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/09 11:02:30 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	search_var(t_tree branch, t_list **env)
+int search_var(t_tree branch, t_list **env)
 {
     t_list	*tmp;
 
@@ -32,6 +32,15 @@ int	search_var(t_tree branch, t_list **env)
         return (0);   
 }
 
+t_list	*lstplast(t_list *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next->next)
+		lst = lst->next;
+	return (lst);
+}
+
 void	unset_func(t_tree branch, t_list **env)
 {
 	t_list	*tmp;
@@ -46,9 +55,10 @@ void	unset_func(t_tree branch, t_list **env)
         *env = (*env)->next;
     if (pos == 3)
     {
-        tmp = ft_lstlast(*env);
-        tmp = NULL;
-        ft_lstdelone(tmp, free);
+        tmp = lstplast(*env);
+        tmp2 = tmp->next;
+        ft_lstdelone(tmp2, free);
+        tmp->next = NULL;
         return ;
     }
     if (pos == 2)
@@ -59,6 +69,5 @@ void	unset_func(t_tree branch, t_list **env)
         tmp = tmp->next;
         tmp2->next = tmp->next;
     }
-
 	ft_lstdelone(tmp, free);
 }

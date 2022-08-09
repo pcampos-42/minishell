@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 10:58:02 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/06 10:06:10 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:38:46 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void	cd_func(t_tree branch, t_list **env)
 
     if (check_valid_path(branch))
     {
-        //func_error();
-		printf("path invalido\n");
+		printf("Path Invalido\n");
         return ;
     }
 	pwd = getcwd(NULL, 0);
@@ -60,7 +59,7 @@ void	cd_func(t_tree branch, t_list **env)
 	}
 	(*env)->content = ft_strjoin("OLDPWD=/", pwd);
 	if(chdir(((char **)(branch.token))[1]) == -1)
-		printf("Deu merda\n");
+		return ;
 	free (pwd);
 	pwd = getcwd(NULL, 0);
 	tmp = *env;

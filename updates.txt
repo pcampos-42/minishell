@@ -21,3 +21,5 @@ builtins v1.2.0 - tentativa de integração do readline, o echo funciona bem o r
 builtins v1.2.1 - pwd, env e cd testados. erro detetado na função export
 
 builtins v1.2.2 - correção no print_env que afinal não era erro do export. Segfault no unset
+
+builtins v1.2.3 - Erros no Unset corrigidos, parametros dos strncmp alterados, maneira de lidar com os fd's das funções alterada
