@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:38:09 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/09 17:12:26 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/10 10:07:49 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	echo_func(t_tree branch)
 {
 	int	fd;
 
-	fd = branch.right->token;
+	fd = 1;//(int)branch.right->token;
 	if (fd < 0)
 	{
 		ft_putstr_fd("Error with comand: ", 2);
@@ -36,7 +36,7 @@ void	pwd_func(t_tree branch)
 	char	*tmp;
 	int	fd;
 
-	fd = branch.right->token;
+	fd = 1;//(int)branch.right->token;
 	if (fd < 0)
 	{
 		ft_putstr_fd("Error with comand: ", 2);
@@ -55,7 +55,7 @@ void	env_func(t_tree branch, t_list *env)
 {
 	int	fd;
 
-	fd = branch.right->token;
+	fd = 1;//(int)branch.right->token;
 	if (fd < 0)
 	{
 		ft_putstr_fd("Error with comand: ", 2);
