@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:38:09 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/10 10:07:49 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/12 12:37:23 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	echo_func(t_tree branch)
 void	pwd_func(t_tree branch)
 {
 	char	*tmp;
-	int	fd;
+	int		fd;
 
 	fd = 1;//(int)branch.right->token;
 	if (fd < 0)
@@ -80,5 +80,5 @@ void	builtins(t_tree branch, t_list *env)
 	else if (!ft_strncmp(((char **)(branch.token))[0], "export", 7))
 		export_func(branch, &env);
 	else if (!ft_strncmp(((char **)(branch.token))[0], "unset", 6))
-	 	unset_func(branch, &env);
+		unset_func(branch, &env);
 }

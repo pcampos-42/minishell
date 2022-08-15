@@ -4,8 +4,7 @@ builtins v1.0.1 - Foram testados os builtins e foram feitas pequenas alteraçõe
 
 builtins v1.1.0 - Foram criados os builtis export e unset (mas não foram testados)
 
-builtins v1.1.1 - Alterações na binary tree, o token passou de char** para void*
-                   o que leva a alterações nas funções echo, pwd, env, cd, e export.
+builtins v1.1.1 - Alterações na binary tree, o token passou de char** para void* o que leva a alterações nas funções echo, pwd, env, cd, e export.
                   Alterações feitas na função export
                   As alterações para a função echo estão no ficheiro teste.c
 
@@ -24,4 +23,6 @@ builtins v1.2.2 - correção no print_env que afinal não era erro do export. Se
 
 builtins v1.2.3 - Erros no Unset corrigidos, parametros dos strncmp alterados, maneira de lidar com os fd's das funções alterada
 
-builtins v1.2.4 - Alterações na funçãoe export (lidar caso a variavel já exista)
+builtins v1.2.4 - Alterações na funçãoe export (lidar caso a variavel já exista ou não passem bem os agumentos)
+
+builtins v1.2.4.1 - testes

@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:15:49 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/10 12:40:19 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/15 18:17:15 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,51 @@ char	**ft_seperate(char *str, char c)
 	size_t	a;
 
 	a = 0;
-	while(str[a] != c && str[a])
+	while (str[a] != c && str[a])
 		a++;
 	matrix = malloc(sizeof(char *) * 3);
-	matrix[0] = ft_substr(str, 0, a + 1);
+	matrix[0] = ft_substr(str, 0, a);
 	if (a < ft_strlen(str))
-		matrix[1] = ft_substr(str, a + 1, ft_strlen(str));
+		matrix[1] = ft_substr(str, a, ft_strlen(str));
 	return (matrix);
 }
 
 void	export_func(t_tree branch, t_list **env)
 {
-	char	**tmp;
-	char	*newvar;
+	int		i;
 	t_list	*tenv;
 
-	tenv = *env;
-	tmp = ft_seperate(((char **)(branch.token))[1], '=');
-	printf("%s\n%s\n", tmp[0], tmp[1]);
-	if (!tmp[1])
-		return ;
+	i = 0;
+	//if (!((char **)branch.token)[1])
+	//{
+	//	declare_x(*env);
+	//	return ;
+	//}
+	while (((char **)branch.token)[++i])
+	{
+		printf("%s\n", ((char **)branch.token)[i]);
+		tenv = *env;
+		if (ft_strchr(((char **)branch.token)[i], '=') && ft_strlen(
+			ft_strchr(((char **)branch.token)[i], '=')) !=
+			ft_strlen(((char **)branch.token)[i]))
+			do_export(((char **)branch.token)[i], tenv, env);
+		else
+			ft_lstadd_back(env, ft_lstnew(((char **)branch.token)[i]));
+	}
+}
+
+void	do_export(char *var, t_list *tenv, t_list **env)
+{
+	char	**tmp;
+	char	*newvar;
+
+	tmp = ft_seperate(var, '=');
 	if (!exist_var(tenv, tmp[0]))
 	{
-		newvar = ft_strjoin(tmp[0], tmp[1]);
+		if (!tmp[1])
+			newvar = tmp[0];
+		else
+			newvar = ft_strjoin(tmp[0], tmp[1]);
 		ft_lstadd_back(env, ft_lstnew(newvar));
 	}
 	else

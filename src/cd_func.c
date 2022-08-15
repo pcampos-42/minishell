@@ -6,26 +6,26 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 10:58:02 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/09 16:38:46 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/13 13:20:26 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int check_valid_path(t_tree branch)
+int	check_valid_path(t_tree branch)
 {
-    if (access(((char **)(branch.token))[1], F_OK) < 0)
+	if (access(((char **)(branch.token))[1], F_OK) < 0)
 	{
 		printf("Can´t access %s\n", ((char **)(branch.token))[1]);
 		return (1);
 	}
-    else
-        return (0);
+	else
+		return (0);
 }
 
 int	search_oldpwd(t_list *env)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = env;
 	while (tmp->next)
@@ -40,14 +40,19 @@ int	search_oldpwd(t_list *env)
 
 void	cd_func(t_tree branch, t_list **env)
 {
-	t_list	*tmp;
-	char	*pwd;
-
-    if (check_valid_path(branch))
-    {
+	if (check_valid_path(branch))
+	{
 		printf("Path Invalido\n");
-        return ;
-    }
+		return ;
+	}
+	do_cd(branch, env);
+}
+
+void	do_cd(t_tree branch, t_list **env)
+{
+	char	*pwd;
+	t_list	*tmp;
+
 	pwd = getcwd(NULL, 0);
 	tmp = *env;
 	if (!search_oldpwd(tmp))
@@ -58,7 +63,7 @@ void	cd_func(t_tree branch, t_list **env)
 			tmp = tmp->next;
 	}
 	(*env)->content = ft_strjoin("OLDPWD=/", pwd);
-	if(chdir(((char **)(branch.token))[1]) == -1)
+	if (chdir(((char **)(branch.token))[1]) == -1)
 		return ;
 	free (pwd);
 	pwd = getcwd(NULL, 0);
