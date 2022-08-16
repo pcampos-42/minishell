@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:15:49 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/15 18:17:15 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:23:38 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,13 @@ void	export_func(t_tree branch, t_list **env)
 	t_list	*tenv;
 
 	i = 0;
-	//if (!((char **)branch.token)[1])
-	//{
-	//	declare_x(*env);
-	//	return ;
-	//}
+	if (!((char **)branch.token)[1])
+	{
+		declare_x(*env, 1/*(int)branch.right->token*/);
+		return ;
+	}
 	while (((char **)branch.token)[++i])
 	{
-		printf("%s\n", ((char **)branch.token)[i]);
 		tenv = *env;
 		if (ft_strchr(((char **)branch.token)[i], '=') && ft_strlen(
 			ft_strchr(((char **)branch.token)[i], '=')) !=

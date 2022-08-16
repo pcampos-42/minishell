@@ -34,10 +34,6 @@ void	print_env(t_list *env, int fd)
 	}
 }
 
-//void	declare_x(t_list *env, int fd)
-//{
-//}
-
 char	**env_matrix(t_list *env)
 {
 	int		size;

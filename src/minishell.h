@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/08/13 13:20:08 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:19:27 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ typedef struct s_tree
 	struct s_tree	*parent;
 }					t_tree;
 
-//------------------------------TREE------------------------------//
-void	tree_add_left(t_tree **root, t_tree *new);
-void	tree_add_right(t_tree **root, t_tree *new);
-void	tree_add_root(t_tree **root, t_tree *new_root);
-
 //------------------------------ENV------------------------------//
 void	get_env(t_list **env, char **envp);
 void	print_env(t_list *env, int fd);
@@ -47,15 +42,12 @@ void	builtins(t_tree branch, t_list *env);
 void	echo_func(t_tree branch);
 void	pwd_func(t_tree branch);
 void	env_func(t_tree branch, t_list *env);
-void	cd_func(t_tree branch, t_list **env);
-
-//------------------------------BUILTINS2------------------------------//
-void	unset_func(t_tree branch, t_list **env);
 
 //------------------------------EXPORT_FUNC------------------------------//
 void	export_func(t_tree branch, t_list **env);
 char	**ft_seperate(char *str, char c);
 void	do_export(char *var, t_list *tenv, t_list **env);
+int		exist_var(t_list *env, char *name);
 
 //------------------------------CD_FUNC------------------------------//
 void	cd_func(t_tree branch, t_list **env);
@@ -65,5 +57,11 @@ void	do_cd(t_tree branch, t_list **env);
 //------------------------------UNSET_FUNC------------------------------//
 void	unset_func(t_tree branch, t_list **env);
 int		search_var(t_tree branch, t_list **env);
+t_list	*lstplast(t_list *lst);
+
+//------------------------------DECLARE_X------------------------------//
+void	declare_x(t_list *env, int fd);
+char	*prepare_quote(char *str);
+char    *put_quote(char *str);
 
 #endif

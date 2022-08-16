@@ -26,3 +26,5 @@ builtins v1.2.3 - Erros no Unset corrigidos, parametros dos strncmp alterados, m
 builtins v1.2.4 - Alterações na funçãoe export (lidar caso a variavel já exista ou não passem bem os agumentos)
 
 builtins v1.2.4.1 - testes
+
+builtins v1.2.5 - Declare x adicionado
