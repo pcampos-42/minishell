@@ -6,27 +6,27 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:57:46 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/16 15:21:03 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/17 18:02:49 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char    *put_quote(char *str)
+char	*put_quote(char *str)
 {
-    char    *new;
-    char    *tmp;
+	char	*new;
+	char	*tmp;
 
-    tmp = ft_strjoin("\"", str);
-    new = ft_strjoin(tmp, "\"");
-    free (tmp);
-    return (new);
+	tmp = ft_strjoin("\"", str);
+	new = ft_strjoin(tmp, "\"");
+	free (tmp);
+	return (new);
 }
 
 char	*prepare_quote(char *str)
 {
 	char	**matrix;
-    char    *new;
+	char	*new;
 	size_t	a;
 
 	a = 0;
@@ -36,10 +36,10 @@ char	*prepare_quote(char *str)
 	matrix[0] = ft_substr(str, 0, a);
 	if (a < ft_strlen(str))
 		matrix[1] = put_quote(str + a);
-    else
-        matrix[1] = ft_strdup("\"\"");
-    new = ft_strjoin(matrix[0], matrix[1]);
-    free (matrix);
+	else
+		matrix[1] = ft_strdup("\"\"");
+	new = ft_strjoin(matrix[0], matrix[1]);
+	free_matrix(matrix);
 	return (new);
 }
 
@@ -55,11 +55,11 @@ void	declare_x(t_list *env, int fd)
 		if (!ft_strchr(tenv->content, '='))
 			ft_putendl_fd(tenv->content, fd);
 		else
-        {
+		{
 			tmp = prepare_quote(tenv->content);
-            ft_putendl_fd(tmp, fd);
-            free (tmp);
-        }
+			ft_putendl_fd(tmp, fd);
+			free (tmp);
+		}
 		tenv = tenv->next;
 	}
 }

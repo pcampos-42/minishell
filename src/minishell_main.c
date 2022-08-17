@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/16 15:19:50 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/17 17:58:19 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 	while (1)
 	{
-		str = readline("MERDA_PA_ESTE_SHELL > ");
-		if (!ft_strncmp(str, "exit", 4))
+		str = readline("\"Já vai 3 meses nesta merda\"SHELL > ");
+		if (!ft_strncmp(str, "exit", 5))
 		{
 			free(str);
 			rl_clear_history();

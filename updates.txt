@@ -28,3 +28,5 @@ builtins v1.2.4 - Alterações na funçãoe export (lidar caso a variavel já ex
 builtins v1.2.4.1 - testes
 
 builtins v1.2.5 - Declare x adicionado
+
+builtins v1.2.5.1 - Adicionado função para dar free em char **, e tratar da norminette

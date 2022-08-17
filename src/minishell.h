@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/08/16 12:19:27 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/17 17:51:13 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ t_list	*lstplast(t_list *lst);
 //------------------------------DECLARE_X------------------------------//
 void	declare_x(t_list *env, int fd);
 char	*prepare_quote(char *str);
-char    *put_quote(char *str);
+char	*put_quote(char *str);
+
+//------------------------------FREE_FUNCS------------------------------//
+void	free_matrix(char **matrix);
 
 #endif

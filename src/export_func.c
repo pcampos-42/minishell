@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:15:49 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/16 12:23:38 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/08/17 17:52:04 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	do_export(char *var, t_list *tenv, t_list **env)
 	if (!exist_var(tenv, tmp[0]))
 	{
 		if (!tmp[1])
-			newvar = tmp[0];
+			newvar = ft_strdup(tmp[0]);
 		else
 			newvar = ft_strjoin(tmp[0], tmp[1]);
 		ft_lstadd_back(env, ft_lstnew(newvar));
@@ -87,9 +87,9 @@ void	do_export(char *var, t_list *tenv, t_list **env)
 			{
 				free (tenv->content);
 				tenv->content = ft_strjoin(tmp[0], tmp[1]);
-				break ;
 			}
 			tenv = tenv->next;
 		}
 	}
+	free_matrix(tmp);
 }
