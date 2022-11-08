@@ -6,11 +6,11 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:15:49 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/17 17:52:04 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/08 19:34:59 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "builtins.h"
 
 int	exist_var(t_list *env, char *name)
 {
@@ -42,26 +42,38 @@ char	**ft_seperate(char *str, char c)
 	return (matrix);
 }
 
-void	export_func(t_tree branch, t_list **env)
+void	export_func(t_tree *branch, t_list **env)
 {
 	int		i;
+	int		fd;
 	t_list	*tenv;
 
 	i = 0;
-	if (!((char **)branch.token)[1])
+	if (branch->left)
 	{
-		declare_x(*env, 1/*(int)branch.right->token*/);
+		if (branch->left->token == REDIRECAO)
+		{
+			fd = open(branch->left->left->token, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			if (fd == -1)
+				printf("Error opening file\n");
+		}
+	}
+	else
+		fd = 1;
+	if (!((char **)branch->token)[1])
+	{
+		declare_x(*env, fd);
 		return ;
 	}
-	while (((char **)branch.token)[++i])
+	while (((char **)branch->token)[++i])
 	{
 		tenv = *env;
-		if (ft_strchr(((char **)branch.token)[i], '=') && ft_strlen(
-			ft_strchr(((char **)branch.token)[i], '=')) !=
-			ft_strlen(((char **)branch.token)[i]))
-			do_export(((char **)branch.token)[i], tenv, env);
+		if (ft_strchr(((char **)branch->token)[i], '=') && ft_strlen(
+			ft_strchr(((char **)branch->token)[i], '=')) !=
+			ft_strlen(((char **)branch->token)[i]))
+			do_export(((char **)branch->token)[i], tenv, env);
 		else
-			ft_lstadd_back(env, ft_lstnew(((char **)branch.token)[i]));
+			ft_lstadd_back(env, ft_lstnew(((char **)branch->token)[i]));
 	}
 }
 

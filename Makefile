@@ -6,7 +6,7 @@
 #    By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/08/17 11:33:57 by pcampos-         ###   ########.fr        #
+#    Updated: 2022/11/07 16:50:48 by pcampos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,16 @@ _BIN    =        ./
 
 CC      =        gcc
 CF      =        -Wall -Werror -Wextra
-SRCS    =        $(_SRC)minishell_main.c $(_SRC)env.c $(_SRC)builtins.c \
-				 $(_SRC)export_func.c $(_SRC)cd_func.c $(_SRC)unset_func.c \
-				 $(_SRC)declare_x.c $(_SRC)free_funcs.c
+SRCS    =        $(_SRC)minishell_main.c \
+				 $(_SRC)env.c \
+				 $(_SRC)builtins/builtins.c \
+				 $(_SRC)builtins/echo_func.c \
+				 $(_SRC)builtins/export_func.c \
+				 $(_SRC)builtins/cd_func.c \
+				 $(_SRC)builtins/pwd_func.c \
+				 $(_SRC)builtins/unset_func.c \
+				 $(_SRC)builtins/declare_x.c \
+				 $(_SRC)free_funcs.c
 OBJS    =        $(patsubst $(_SRC)%.c,$(_OBJ)%.o,$(SRCS))
 DEPS    =        libft.a
 LIBS    =        -lft -lreadline
@@ -51,6 +58,7 @@ LIBS    =        -lft -lreadline
 all: deps $(NAME)
 
 $(_OBJ)%.o: $(_SRC)%.c
+	@$(MKD) -p $(@D)
 	$(CC) $(CF) -c $< -o $@
 
 $(NAME): deps $(OBJS)

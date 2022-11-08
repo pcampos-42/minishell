@@ -6,30 +6,30 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 12:42:27 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/12 12:52:13 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/08 19:38:08 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "builtins.h"
 
-int	search_var(t_tree branch, t_list **env)
+int	search_var(t_tree *branch, t_list **env)
 {
 	t_list	*tmp;
 
 	tmp = *env;
-	if (!ft_strncmp(tmp->content, ((char **)branch.token)[1],
-		ft_strlen(((char **)branch.token)[1])))
+	if (!ft_strncmp(tmp->content, ((char **)branch->token)[1],
+		ft_strlen(((char **)branch->token)[1])))
 		return (1);
 	tmp = tmp->next;
 	while (tmp->next != NULL)
 	{
-		if (!ft_strncmp(tmp->content, ((char **)branch.token)[1],
-			ft_strlen(((char **)branch.token)[1])))
+		if (!ft_strncmp(tmp->content, ((char **)branch->token)[1],
+			ft_strlen(((char **)branch->token)[1])))
 			return (2);
 		tmp = tmp->next;
 	}
-	if (!ft_strncmp(tmp->content, ((char **)branch.token)[1],
-		ft_strlen(((char **)branch.token)[1])))
+	if (!ft_strncmp(tmp->content, ((char **)branch->token)[1],
+		ft_strlen(((char **)branch->token)[1])))
 		return (3);
 	return (0);
 }
@@ -43,7 +43,7 @@ t_list	*lstplast(t_list *lst)
 	return (lst);
 }
 
-void	unset_func(t_tree branch, t_list **env)
+void	unset_func(t_tree *branch, t_list **env)
 {
 	t_list	*tmp;
 	t_list	*tmp2;
@@ -62,8 +62,8 @@ void	unset_func(t_tree branch, t_list **env)
 	}
 	if (pos == 2)
 	{
-		while (ft_strncmp(tmp->next->content, ((char **)branch.token)[1],
-			ft_strlen(((char **)branch.token)[1])))
+		while (ft_strncmp(tmp->next->content, ((char **)branch->token)[1],
+			ft_strlen(((char **)branch->token)[1])))
 			tmp = tmp->next;
 		tmp2 = tmp;
 		tmp = tmp->next;

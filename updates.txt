@@ -30,3 +30,8 @@ builtins v1.2.4.1 - testes
 builtins v1.2.5 - Declare x adicionado
 
 builtins v1.2.5.1 - Adicionado função para dar free em char **, e tratar da norminette
+
+builtins v2.0 - já não sei o que andava a fazer. Agora e tentar lembrar e adaptar ao novo parser do lucas.
+                builins separados cada um para o seu ficheiro e meter todos na pasta para builtins
+                alterações em todos os builtins na maneira como eles vem qual o fd onde escrevem
+                comecar a fazer o executador de comandos

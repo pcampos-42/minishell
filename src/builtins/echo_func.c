@@ -1,60 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   echo_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 09:38:52 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/08 19:38:34 by pcampos-         ###   ########.fr       */
+/*   Created: 2022/10/27 12:46:13 by pcampos-          #+#    #+#             */
+/*   Updated: 2022/11/08 19:32:52 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "builtins.h"
 
-void	get_env(t_list **env, char **envp)
-{
-	int	i;
-
-	i = -1;
-	while (envp[++i])
-		ft_lstadd_back(env, ft_lstnew(envp[i]));
-}
-
-void	print_env(t_list *env, int fd)
-{
-	t_list	*tmp;
-
-	tmp = env;
-	while (tmp)
-	{
-		if (ft_strchr(tmp->content, '='))
-			ft_putendl_fd(tmp->content, fd);
-		tmp = tmp->next;
-	}
-}
-
-char	**env_matrix(t_list *env)
-{
-	int		size;
-	int		i;
-	char	**matrix;
-	t_list	*tmp;
-
-	i = 0;
-	tmp = env;
-	size = ft_lstsize(env);
-	matrix = malloc(sizeof(char *) * size + 1);
-	while (tmp->next != NULL)
-	{
-		matrix[i++] = tmp->content;
-		tmp = tmp->next;
-	}
-	matrix[i] = tmp->content;
-	return (matrix);
-}
-
-void	env_func(t_tree *branch, t_list *env)
+void	echo_func(t_tree *branch)
 {
 	int	fd;
 
@@ -75,7 +33,10 @@ void	env_func(t_tree *branch, t_list *env)
 		ft_putendl_fd(((char **)(branch->token))[0], 2);
 		return ;
 	}
-	print_env(env, fd);
+	if (ft_strncmp(((char **)(branch->token))[1], "-n", 3))
+		ft_putstr_fd(((char **)(branch->token))[1], fd);
+	else
+		ft_putendl_fd(((char **)(branch->token))[2], fd);
 	if (fd > 2)
 		close(fd);
 }
