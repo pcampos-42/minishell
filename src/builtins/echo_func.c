@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 12:46:13 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/08 19:32:52 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:35:45 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ void	echo_func(t_tree *branch)
 
 	if (branch->left)
 	{
-		if (branch->left->token == REDIRECAO)
+		if (branch->left)
 		{
-			fd = open(branch->left->left->token, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			if (fd == -1)
-				printf("Error opening file\n");
+			return ;
 		}
 	}
 	else

@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd_func.c                                         :+:      :+:    :+:   */
+/*   token_treat.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 11:53:45 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/22 14:36:45 by pcampos-         ###   ########.fr       */
+/*   Created: 2022/10/21 17:34:48 by lucas-ma          #+#    #+#             */
+/*   Updated: 2022/11/22 12:19:57 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "parser.h"
 
-void	pwd_func(t_tree *branch)
+char	*treat_token(char *token, t_list *env)
 {
-	char	*tmp;
-	int		fd;
+	char	*home;
 
-	if (branch->left)
+	if (!token)
+		return (0);
+	home = home_expand(token, env);
+	if (home)
 	{
-		if (branch->left)
-		{
-			return ;
-		}
+		free_str(token);
+		return (home);
 	}
 	else
-		fd = 1;
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error with comand: ", 2);
-		ft_putendl_fd(((char **)(branch->token))[0], 2);
-		return ;
-	}
-	tmp = NULL;
-	tmp = getcwd(NULL, 0);
-	ft_putendl_fd(tmp, fd);
-	free (tmp);
-	if (fd > 2)
-		close(fd);
+		return (token);
 }

@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:20:53 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/08/17 17:50:46 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/22 12:19:05 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,37 @@ void	free_matrix(char **matrix)
 
 	i = -1;
 	while (matrix[++i])
-		free (matrix[i]);
+		free_str(matrix[i]);
 	free (matrix);
+}
+
+void	free_str(char *str)
+{
+	if (str)
+		free(str);
+}
+
+static void	free_node(t_tree *node)
+{
+	if (is_node_red(node))
+	{
+		if (node->token)
+			free_str(node->token);
+	}
+	else if (is_node_cmd(node))
+	{
+		if (node->token)
+			free_matrix(node->token);
+	}
+	free(node);
+}
+
+void	free_tree(t_tree *tree)
+{
+	if (!tree)
+		return ;
+	if (tree->left)
+		free_node(tree->left);
+	if (tree->right)
+		free_node(tree->right);
 }

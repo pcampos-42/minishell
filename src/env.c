@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:38:52 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/08 19:38:34 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:35:34 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,9 @@ void	env_func(t_tree *branch, t_list *env)
 
 	if (branch->left)
 	{
-		if (branch->left->token == REDIRECAO)
+		if (branch->left)
 		{
-			fd = open(branch->left->left->token, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			if (fd == -1)
-				printf("Error opening file\n");
+			return ;
 		}
 	}
 	else

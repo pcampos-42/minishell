@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/08 18:43:46 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:33:43 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av, char **envp)
 {
 	char	*str;
 	t_list	*env;
-	t_tree	root;
+	t_tree	*root;
 
 	env = NULL;
 	get_env(&env, envp);
@@ -32,15 +32,10 @@ int	main(int ac, char **av, char **envp)
 			return (0);
 		}
 		add_history(str);
-		if (ft_strchr(str, ' '))
-			root.token = ft_split(str, ' ');
-		else
-		{
-			((char **)root.token)[0] = ft_strdup(str);
-			((char **)root.token)[1] = NULL;
-		}
-		builtins(root, env);
+		root = parser_main(str, env);
+		//exeggutor(&root, env);
 		free(str);
+		free_tree(root);
 	}
 	return (0);
 }
