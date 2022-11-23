@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 12:42:27 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/08 19:38:08 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:56:56 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,16 @@ t_list	*lstplast(t_list *lst)
 	return (lst);
 }
 
+void	unset_mid(t_tree *branch, t_list *tmp, t_list *tmp2)
+{
+	while (ft_strncmp(tmp->next->content, ((char **)branch->token)[1],
+		ft_strlen(((char **)branch->token)[1])))
+		tmp = tmp->next;
+	tmp2 = tmp->next;
+	tmp->next = tmp2->next;
+	ft_lstdelone(tmp2, free);
+}
+
 void	unset_func(t_tree *branch, t_list **env)
 {
 	t_list	*tmp;
@@ -50,24 +60,23 @@ void	unset_func(t_tree *branch, t_list **env)
 	int		pos;
 
 	tmp = *env;
+	tmp2 = NULL;
 	pos = search_var(branch, env);
 	if (pos == 1)
+	{
 		*env = (*env)->next;
+		ft_lstdelone(tmp, free);
+	}		
 	if (pos == 3)
 	{
 		tmp = lstplast(*env);
 		tmp2 = tmp->next;
 		ft_lstdelone(tmp2, free);
 		tmp->next = NULL;
+		return ;
 	}
 	if (pos == 2)
 	{
-		while (ft_strncmp(tmp->next->content, ((char **)branch->token)[1],
-			ft_strlen(((char **)branch->token)[1])))
-			tmp = tmp->next;
-		tmp2 = tmp;
-		tmp = tmp->next;
-		tmp2->next = tmp->next;
+		unset_mid(branch, tmp, tmp2);
 	}
-	ft_lstdelone(tmp, free);
 }

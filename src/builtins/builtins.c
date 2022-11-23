@@ -6,11 +6,31 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:38:09 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/09 16:29:43 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/23 11:33:03 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
+
+void	print_args(char **token, int fd, int i)
+{
+	while (token[i + 1])
+	{
+		ft_putstr_fd(token[i++], fd);
+		ft_putchar_fd(' ', fd);
+	}
+	ft_putstr_fd(token[i], fd);
+}
+
+void	print_args_nl(char **token, int fd, int i)
+{
+	while (token[i + 1])
+	{
+		ft_putstr_fd(token[i++], fd);
+		ft_putchar_fd(' ', fd);
+	}
+	ft_putendl_fd(token[i], fd);
+}
 
 void	builtins(t_tree *branch, t_list *env)
 {

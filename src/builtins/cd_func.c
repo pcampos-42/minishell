@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 10:58:02 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/10 17:55:45 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/23 11:40:44 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,4 @@ void	do_cd(t_tree *branch, t_list **env)
 		tmp = tmp->next;
 	tmp->content = ft_strjoin("PWD=/", pwd);
 	free (pwd);
-	printf("PWD funciona com sucesso\n");
 }

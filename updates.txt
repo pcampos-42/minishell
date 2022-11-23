@@ -39,3 +39,14 @@ builtins v2.0 - já não sei o que andava a fazer. Agora e tentar lembrar e adap
 builtins v2.1 - executador a ser feito
 
 MINISHELL v0.1 - apos 30 anos finalmente temos o parser a funcionar agora e juntar ao resto e ver o que funciona e o que esta errado
+
+MINISHELL v0.2 - testar os builtins e meter a funcionar a 100%
+                 criadas novas funcoes para printar os argumentos (utilizado no builtin ehco)
+                 Echo revisto e corrigido, deve tar bem agora
+                 PWD ta bom
+                 ENV parece tar na boa
+                 CD funcio que e uma beleza
+                 declare x corrigido
+                 export nao podia tar melhor
+                 unset pronto
+                 BUILTINS FEITOS A 100%
