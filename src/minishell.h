@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/11/22 14:42:33 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:36:42 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ void	free_str(char *str);
 void	free_tree(t_tree *tree);
 
 //------------------------------BUILTINS------------------------------//
-void	builtins(t_tree *branch, t_list *env);
+void	builtins(t_tree *branch, t_list **env);
 
 //------------------------------EXEGGUTOR------------------------------//
-void	exeggutor(t_tree **root, t_list *env);
-void	finish_tree(t_tree *tree, t_list *env);
+void	exeggutor(t_tree **root, t_list **env);
+void	finish_tree(t_tree *tree, t_list **env);
 void	do_comand(t_tree *tree, t_list *env);
 void	child_labor(t_tree *tree, t_list *env, int *pipe_fd);
 

@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:56:24 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/22 14:43:38 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/24 11:40:09 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,20 @@ char	**find_path(t_list *env)
 
 char	*get_path(t_tree *tree, t_list *env)
 {
+	int		i;
 	char	*path;
+	char	*tmp;
 	char	**paths;
 
+	i = -1;
 	paths = find_path(env);
-	while (*paths)
+	while (paths[++i])
 	{
-		path = ft_strjoin(*paths, "/");
-		path = ft_strjoin(path, tree->token);
+		tmp = ft_strjoin(paths[i], "/");
+		path = ft_strjoin(tmp, tree->token);
+		free(tmp);
 		if (!access(path, F_OK))
 			return (path);
-		paths++;
 	}
 	return (NULL);
 }

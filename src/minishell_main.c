@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/23 10:53:11 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/24 11:11:45 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,19 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		str = readline("GigaSHELL > ");
-		if (!ft_strncmp(str, "exit", 5))
+		if (!ft_strncmp("exit", str, 5))
 		{
+			printf("OLA \n");
 			free(str);
 			rl_clear_history();
-			return (0);
+			break ;
 		}
 		add_history(str);
 		root = parser_main(str, env);
-		exeggutor(&root, env);
+		exeggutor(&root, &env);
 		free(str);
 		free_tree(root);
 	}
+	ft_lstclear(&env, free);
 	return (0);
 }

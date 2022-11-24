@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/11/23 14:46:28 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/24 11:27:29 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "../minishell.h"
 
 //------------------------------BUILTINS------------------------------//
-void	builtins(t_tree *branch, t_list *env);
 void	print_args(char **token, int fd, int i);
 void	print_args_nl(char **token, int fd, int i);
 
@@ -30,7 +29,7 @@ void	echo_func(t_tree *branch);
 //------------------------------EXPORT_FUNC------------------------------//
 void	export_func(t_tree *branch, t_list **env);
 char	**ft_seperate(char *str, char c);
-void	do_export(char *var, t_list *tenv, t_list **env);
+void	do_export(char *str, t_list **env);
 int		exist_var(t_list *env, char *name);
 
 //------------------------------CD_FUNC------------------------------//
@@ -47,5 +46,8 @@ t_list	*lstplast(t_list *lst);
 void	declare_x(t_list *env, int fd);
 char	*prepare_quote(char *str);
 char	*put_quote(char *str);
+
+//------------------------------EXIT_FUNC------------------------------//
+void	exit_func(void);
 
 #endif

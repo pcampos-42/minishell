@@ -50,3 +50,6 @@ MINISHELL v0.2 - testar os builtins e meter a funcionar a 100%
                  export nao podia tar melhor
                  unset pronto
                  BUILTINS FEITOS A 100%
+
+MINISHELL v0.3 - afinal o export tinha erros, estou a refazer o builtin
+                 apos muita dor com o ricardo ja ta a funcionar

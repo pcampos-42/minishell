@@ -6,56 +6,52 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:15:49 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/22 14:36:13 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:48:03 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-int	exist_var(t_list *env, char *name)
+void	ft_update(t_list **env, char *str)
 {
-	t_list	*tmp;
-
-	tmp = env;
-	while (tmp)
-	{
-		if (!ft_strncmp(tmp->content, name, ft_strlen(name) - 1))
-			return (1);
-		else
-			tmp = tmp->next;
-	}
-	return (0);
+	free((*env)->content);
+	(*env)->content = ft_strdup(str);
 }
 
-char	**ft_seperate(char *str, char c)
+void	do_export(char *str, t_list **env)
 {
-	char	**matrix;
-	size_t	a;
+	t_list	*tnv;
 
-	a = 0;
-	while (str[a] != c && str[a])
-		a++;
-	matrix = malloc(sizeof(char *) * 3);
-	matrix[0] = ft_substr(str, 0, a);
-	if (a < ft_strlen(str))
-		matrix[1] = ft_substr(str, a, ft_strlen(str));
-	return (matrix);
+	tnv = *env;
+	while (tnv)
+	{
+		if (!strchr(str, '=') && !ft_strncmp((char *)tnv->content, str,
+				ft_strlen((char *)tnv->content)))
+			return (ft_update(&tnv, str));
+		if (!ft_strncmp((char *)tnv->content, str,
+				ft_strlen((char *)tnv->content)
+				- ft_strlen(ft_strchr((char *)tnv->content, '='))))
+		{
+			if (!str[ft_strlen((char *)tnv->content)
+					- ft_strlen(ft_strchr((char *)tnv->content, '='))])
+				return ;
+			if (str[ft_strlen((char *)tnv->content)
+					- ft_strlen(ft_strchr((char *)tnv->content, '='))] == '=')
+				return (ft_update(&tnv, str));
+		}
+		tnv = tnv->next;
+	}
+	ft_lstadd_back(env, ft_lstnew(ft_strdup(str)));
 }
 
 void	export_func(t_tree *branch, t_list **env)
 {
 	int		i;
 	int		fd;
-	t_list	*tenv;
 
 	i = 0;
 	if (branch->left)
-	{
-		if (branch->left)
-		{
-			return ;
-		}
-	}
+		return ;
 	else
 		fd = 1;
 	if (fd < 0)
@@ -65,47 +61,7 @@ void	export_func(t_tree *branch, t_list **env)
 		return ;
 	}
 	if (!((char **)branch->token)[1])
-	{
-		declare_x(*env, fd);
-		return ;
-	}
+		return (declare_x(*env, fd));
 	while (((char **)branch->token)[++i])
-	{
-		tenv = *env;
-		if (ft_strchr(((char **)branch->token)[i], '=') && ft_strlen(
-			ft_strchr(((char **)branch->token)[i], '=')) !=
-			ft_strlen(((char **)branch->token)[i]))
-			do_export(((char **)branch->token)[i], tenv, env);
-		else
-			ft_lstadd_back(env, ft_lstnew(((char **)branch->token)[i]));
-	}
-}
-
-void	do_export(char *var, t_list *tenv, t_list **env)
-{
-	char	**tmp;
-	char	*newvar;
-
-	tmp = ft_seperate(var, '=');
-	if (!exist_var(tenv, tmp[0]))
-	{
-		if (!tmp[1])
-			newvar = ft_strdup(tmp[0]);
-		else
-			newvar = ft_strjoin(tmp[0], tmp[1]);
-		ft_lstadd_back(env, ft_lstnew(newvar));
-	}
-	else
-	{
-		while (tenv)
-		{
-			if (!ft_strncmp(tenv->content, tmp[0], ft_strlen(tmp[0])))
-			{
-				free (tenv->content);
-				tenv->content = ft_strjoin(tmp[0], tmp[1]);
-			}
-			tenv = tenv->next;
-		}
-	}
-	free_matrix(tmp);
+		do_export(((char **)branch->token)[i], env);
 }
