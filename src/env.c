@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:38:52 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/22 14:35:34 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:22:22 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	get_env(t_list **env, char **envp)
 
 	i = -1;
 	while (envp[++i])
-		ft_lstadd_back(env, ft_lstnew(envp[i]));
+		ft_lstadd_back(env, ft_lstnew(ft_strdup(envp[i])));
 }
 
 void	print_env(t_list *env, int fd)
@@ -52,28 +52,4 @@ char	**env_matrix(t_list *env)
 	}
 	matrix[i] = tmp->content;
 	return (matrix);
-}
-
-void	env_func(t_tree *branch, t_list *env)
-{
-	int	fd;
-
-	if (branch->left)
-	{
-		if (branch->left)
-		{
-			return ;
-		}
-	}
-	else
-		fd = 1;
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error with comand: ", 2);
-		ft_putendl_fd(((char **)(branch->token))[0], 2);
-		return ;
-	}
-	print_env(env, fd);
-	if (fd > 2)
-		close(fd);
 }

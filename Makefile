@@ -6,7 +6,7 @@
 #    By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/11/24 11:42:18 by pcampos-         ###   ########.fr        #
+#    Updated: 2022/12/09 22:21:48 by pcampos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ _BIN    =        ./
 ############### COMPILER ################
 
 CC      =        cc
-CF      =        -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS      =        -Wall -Werror -Wextra #-g -fsanitize=address
 SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)free_funcs.c \
 				 $(_SRC)env.c \
@@ -51,7 +51,8 @@ SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)builtins/unset_func.c \
 				 $(_SRC)builtins/exit_func.c \
 				 $(_SRC)exeggutor/exeggutor.c \
-				 $(_SRC)exeggutor/exec_utils.c \
+				 $(_SRC)exeggutor/path_utils.c \
+				 $(_SRC)exeggutor/relative_path.c \
 				 $(_SRC)parser/parser_main.c \
 				 $(_SRC)parser/add_new_nodes.c \
 				 $(_SRC)parser/build_tree.c \
@@ -62,6 +63,7 @@ SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)parser/token_treat.c \
 				 $(_SRC)parser/tree_utils.c \
 				 $(_SRC)parser/update_node.c \
+				 $(_SRC)redir/redir.c \
 				 
 OBJS    =        $(patsubst $(_SRC)%.c,$(_OBJ)%.o,$(SRCS))
 DEPS    =        libft.a
@@ -76,7 +78,7 @@ $(_OBJ)%.o: $(_SRC)%.c
 	$(CC) $(CF) -c $< -o $@
 
 $(NAME): deps $(OBJS)
-	$(CC) $(CF)  $(OBJS) -o $(NAME) -L $(_LIB) $(LIBS)
+	$(CC) $(CFLAGS)  $(OBJS) -o $(NAME) -L $(_LIB) $(LIBS)
 
 ################ DEPS ###################
 

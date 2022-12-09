@@ -1,52 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_utils.c                                       :+:      :+:    :+:   */
+/*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:56:24 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/24 11:40:09 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:17:05 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	**find_path(t_list *env)
+char	*absolute_path(char *cmd)
 {
-	char	**path;
-	char	*tmp;
-	t_list	*tenv;
+	DIR	*dir;
 
-	tenv = env;
-	while (tenv)
+	dir = opendir(cmd);
+	if (dir)
 	{
-		if (!ft_strncmp(tenv->content, "PATH=", 5))
-			tmp = ft_strdup(tenv->content + 5);
-		tenv = tenv->next;
+		closedir(dir);
+		ft_putstr_fd(cmd, 2);
+		ft_putendl_fd(" is a directory", 2);
+		g_exit_status = 126;
+		exit(126);
 	}
-	if (!tmp)
-		return (NULL);
-	path = ft_split(tmp, ':');
-	return (path);
+	if (access(cmd, X_OK) < 0)
+	{
+		ft_putstr_fd(cmd, 2);
+		ft_putendl_fd(": Command not found", 2);
+		g_exit_status = 127;
+		exit(127);
+	}
+	return (cmd);
 }
 
-char	*get_path(t_tree *tree, t_list *env)
+char	*cmd_path(char *cmd, t_list *env)
 {
-	int		i;
-	char	*path;
-	char	*tmp;
-	char	**paths;
-
-	i = -1;
-	paths = find_path(env);
-	while (paths[++i])
-	{
-		tmp = ft_strjoin(paths[i], "/");
-		path = ft_strjoin(tmp, tree->token);
-		free(tmp);
-		if (!access(path, F_OK))
-			return (path);
-	}
-	return (NULL);
+	if (cmd[0] == '/')
+		return (absolute_path(cmd));
+	else
+		return (relative_path(cmd, env));
 }

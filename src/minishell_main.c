@@ -6,14 +6,17 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/24 11:11:45 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/09 22:18:47 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	g_exit_status = 0;
+
 int	main(int ac, char **av, char **envp)
 {
+	int		c;
 	char	*str;
 	t_list	*env;
 	t_tree	*root;
@@ -25,19 +28,26 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		str = readline("GigaSHELL > ");
-		if (!ft_strncmp("exit", str, 5))
-		{
-			printf("OLA \n");
-			free(str);
-			rl_clear_history();
+		if (!str)
 			break ;
-		}
 		add_history(str);
 		root = parser_main(str, env);
-		exeggutor(&root, &env);
+		c = 1;
+		if (root->left)
+		{
+			c++;
+			while (root->left->type == E_PIPE)
+			{
+				root = root->left;
+				c++;
+			}
+		}
+		exeggutor(&root, &env, c);
 		free(str);
 		free_tree(root);
 	}
-	ft_lstclear(&env, free);
+	rl_clear_history();
+	if (env)
+		ft_lstclear(&env, free);
 	return (0);
 }

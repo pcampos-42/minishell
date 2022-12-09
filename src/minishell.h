@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/11/23 17:36:42 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/09 22:20:28 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,16 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/wait.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <dirent.h>
 
 //------------------------------DEFINES------------------------------//
 # define OPERATORS		"<>|"
 # define WHITE_SPACE	" \t\r\n\v\f"
+
+//------------------------------GLOBAL_VARS------------------------------//
+extern int	g_exit_status;
 
 //------------------------------STRUCTS------------------------------//
 typedef enum e_type
@@ -50,11 +56,18 @@ typedef struct s_tree
 	struct s_tree	*parent;
 }					t_tree;
 
+typedef struct s_exec
+{
+	int		n_c;
+	int		c;
+	int		fd;
+	int		pid;
+}					t_exec;
+
 //------------------------------ENV------------------------------//
 void	get_env(t_list **env, char **envp);
 void	print_env(t_list *env, int fd);
 char	**env_matrix(t_list *env);
-void	env_func(t_tree *branch, t_list *env);
 
 //------------------------------FREE_FUNCS------------------------------//
 void	free_matrix(char **matrix);
@@ -62,19 +75,26 @@ void	free_str(char *str);
 void	free_tree(t_tree *tree);
 
 //------------------------------BUILTINS------------------------------//
-void	builtins(t_tree *branch, t_list **env);
+void	builtins(t_tree *branch, t_list **env, int fd);
 
 //------------------------------EXEGGUTOR------------------------------//
-void	exeggutor(t_tree **root, t_list **env);
-void	finish_tree(t_tree *tree, t_list **env);
-void	do_comand(t_tree *tree, t_list *env);
-void	child_labor(t_tree *tree, t_list *env, int *pipe_fd);
+void	exeggutor(t_tree **root, t_list **env, int c);
+void	start_tree(t_tree *tree, t_list *env, t_exec *exec);
+void	do_comand(t_tree *tree, t_list *env, t_exec *exec);
+void	child_labor(t_tree *tree, t_list *env, t_exec *exec);
 
 //------------------------------REDIR------------------------------//
+void	redir(t_tree *branch, t_exec *exec);
 
-//------------------------------EXEC_UTILS------------------------------//
-char	**find_path(t_list *env);
-char	*get_path(t_tree *tree, t_list *env);
+//------------------------------PATH_UTILS------------------------------//
+char	*cmd_path(char *cmd, t_list *env);
+char	*absolute_path(char *cmd);
+
+//------------------------------RELATIVE_PATH------------------------------//
+char	*relative_path(char *cmd, t_list *env);
+char	*get_path(char *env, char *cmd);
+char	*get_cmd_path(char **path, char *cmd);
+int		is_path(char *str, char *path);
 
 //------------------------------PARSER_MAIN-----------------------------//
 t_tree	*parser_main(char *s, t_list *env);

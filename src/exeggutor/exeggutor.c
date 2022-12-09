@@ -6,83 +6,85 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:59:14 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/23 17:34:35 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/09 22:26:42 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	exeggutor(t_tree **root, t_list **env)
+int	redir_built(t_tree *tree)
 {
-	t_tree	*tree;
+	return (1);
+}
 
+void	exeggutor(t_tree **root, t_list **env, int c)
+{
+	t_tree		*tree;
+	t_exec		*exec;
+
+	exec->fd = 0;
+	exec->n_c = c;
+	exec->c = c;
 	tree = *root;
-	if (!tree->right)
-	{
-		if (tree->type == E_BUILT)
-			builtins(tree, env);
-		else
-			do_comand(tree, *env);
-	}
+	if (!tree->parent && tree->type == E_BUILT)
+		builtins(tree, env, redir_built(tree));
 	else
 	{
-		while (tree->right->type == E_PIPE)
+		start_tree(tree, *env, exec);
+		while (tree->parent)
 		{
-			if (tree->left->type == E_BUILT)
-				builtins(tree->left, env);
-			else
-				do_comand(tree->left, *env);
-			tree = tree->right;
+			tree = tree->parent;
+			do_comand(tree->right, *env, exec);
+			exec->c--;
 		}
-		finish_tree(tree, env);
+	}
+	waitpid(exec->pid, &g_exit_status, 0);
+	while (exec->n_c--)
+		wait(NULL);
+}
+
+void	start_tree(t_tree *tree, t_list *env, t_exec *exec)
+{
+	if (tree->type == E_PIPE)
+	{
+		do_comand(tree->left, env, exec);
+		exec->c--;
+		do_comand(tree->right, env, exec);
+		exec->c--;
+	}
+	else
+		do_comand(tree, env, exec);
+}
+
+void	do_comand(t_tree *tree, t_list *env, t_exec *exec)
+{
+	if (pipe(tree->p) == -1)
+		ft_putendl_fd("Error: Pipe failed", 2);
+	exec->pid = fork();
+	if (exec->pid < 0)
+		ft_putendl_fd("Error: Fork failed", 2);
+	if (exec->pid == 0)
+		child_labor(tree, env, exec);
+	if (tree->parent)
+	{
+		if (exec->fd > 0)
+			close(exec->fd);
+		close(tree->p[1]);
+		exec->fd = tree->p[0];
 	}
 }
 
-void	finish_tree(t_tree *tree, t_list **env)
+void	child_labor(t_tree *tree, t_list *env, t_exec *exec)
 {
-	if (tree->left->type == E_BUILT)
-		builtins(tree->left, env);
-	else
-		do_comand(tree->left, *env);
-	if (tree->right->type == E_BUILT)
-		builtins(tree->right, env);
-	else
-		do_comand(tree->right, *env);
-}
-
-void	do_comand(t_tree *tree, t_list *env)
-{
-	pid_t	pid;
-	int		pipe_fd[2];
-
-	if (pipe(pipe_fd) == -1)
-	{	
-		ft_putendl_fd("pipe error", 2);
-		return ;
-	}
-	pid = fork();
-	if (pid == -1)
+	close(tree->p[0]);
+	redir(tree, exec);
+	rl_clear_history();
+	if (tree->type == E_BUILT)
 	{
-		ft_putendl_fd("fork error", 2);
-		return ;
+		builtins(tree, &env, 1);
+		exit(g_exit_status);
 	}
-	if (!pid)
-	{
-		child_labor(tree, env, pipe_fd);
-	}
-	else
-	{
-		close(pipe_fd[1]);
-		dup2(pipe_fd[0], 0);
-		close(pipe_fd[0]);
-		waitpid(pid, NULL, 0);
-	}
-}
-
-void	child_labor(t_tree *tree, t_list *env, int *pipe_fd)
-{
-	close(pipe_fd[0]);
-	dup2(pipe_fd[1], 1);
-	close(pipe_fd[1]);
-	execve(get_path(tree, env), tree->token, env_matrix(env));
+	execve(cmd_path(((char **)tree->token)[0], env),
+		tree->token, env_matrix(env));
+	exit(127);
 }

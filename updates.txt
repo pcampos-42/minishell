@@ -53,3 +53,9 @@ MINISHELL v0.2 - testar os builtins e meter a funcionar a 100%
 
 MINISHELL v0.3 - afinal o export tinha erros, estou a refazer o builtin
                  apos muita dor com o ricardo ja ta a funcionar
+
+MINISHELL v0.4 - afinal falta o builtin do exit que ja ta feito
+
+MINISHELL v0.5 - ja fiz tanta merda que nem sei o que meter aqui
+                 os pipes funcionam mas alguns comandos tao na merda
+                 e ainda falta fazer as redirecoes

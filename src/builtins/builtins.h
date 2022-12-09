@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/11/24 11:27:29 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:25:44 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	print_args(char **token, int fd, int i);
 void	print_args_nl(char **token, int fd, int i);
 
 //------------------------------PWD_FUNC------------------------------//
-void	pwd_func(t_tree *branch);
+void	pwd_func(t_tree *branch, int fd);
 
 //------------------------------ECHO_FUNC------------------------------//
-void	echo_func(t_tree *branch);
+void	echo_func(t_tree *branch, int fd);
 
 //------------------------------EXPORT_FUNC------------------------------//
-void	export_func(t_tree *branch, t_list **env);
+void	export_func(t_tree *branch, t_list **env, int fd);
 char	**ft_seperate(char *str, char c);
 void	do_export(char *str, t_list **env);
 int		exist_var(t_list *env, char *name);
@@ -48,6 +48,8 @@ char	*prepare_quote(char *str);
 char	*put_quote(char *str);
 
 //------------------------------EXIT_FUNC------------------------------//
-void	exit_func(void);
+void	exit_func(t_tree *branch);
+int		is_num(char *str);
+void	go_buy_milk(t_tree *branch, int n);
 
 #endif
