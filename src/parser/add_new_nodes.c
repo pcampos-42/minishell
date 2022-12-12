@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_new_nodes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 18:51:32 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/11/29 11:35:46 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:54:00 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void	add_new_red(t_tree **tree, t_tree *node)
 	if (!tree)
 		return ;
 	first = *tree;
-	if (!first || is_node_red(first))
+	if (!first)
 		add_node_on_top(tree, node);
-	else if (is_node_cmd(first))
+	else if (is_node_cmd(first) || is_node_red(first))
 		add_node_on_left(first, node);
 	else if (is_node_pipe(first))
 	{
-		next = first->left;
+		next = first->right;
 		if (!next || is_node_red(next))
 			add_node_on_right(first, node);
 		else

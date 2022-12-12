@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+         #
+#    By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/09 22:21:48 by pcampos-         ###   ########.fr        #
+#    Updated: 2022/12/12 16:48:46 by lucas-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ _BIN    =        ./
 
 ############### COMPILER ################
 
-CC      =        cc
+CC      =        gcc
 CFLAGS      =        -Wall -Werror -Wextra #-g -fsanitize=address
 SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)free_funcs.c \
@@ -103,7 +103,7 @@ $(_BIN):
 
 fclean: clean
 	$(RMV) -r $(NAME)
-
+	$(RMV) -r $(_OBJ)
 	$(RMV) -r $(_LIB)libft.a
 
 re: fclean all

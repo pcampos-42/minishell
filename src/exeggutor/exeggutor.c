@@ -20,26 +20,26 @@ int	redir_built(t_tree *tree)
 void	exeggutor(t_tree **root, t_list **env, int c)
 {
 	t_tree		*tree;
-	t_exec		*exec;
+	t_exec		exec;
 
-	exec->fd = 0;
-	exec->n_c = c;
-	exec->c = c;
+	exec.fd = 0;
+	exec.n_c = c;
+	exec.c = c;
 	tree = *root;
 	if (!tree->parent && tree->type == E_BUILT)
 		builtins(tree, env, redir_built(tree));
 	else
 	{
-		start_tree(tree, *env, exec);
+		start_tree(tree, *env, &exec);
 		while (tree->parent)
 		{
 			tree = tree->parent;
-			do_comand(tree->right, *env, exec);
-			exec->c--;
+			do_comand(tree->right, *env, &exec);
+			exec.c--;
 		}
 	}
-	waitpid(exec->pid, &g_exit_status, 0);
-	while (exec->n_c--)
+	waitpid(exec.pid, &g_exit_status, 0);
+	while (exec.n_c--)
 		wait(NULL);
 }
 
