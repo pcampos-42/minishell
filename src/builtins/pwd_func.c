@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 11:53:45 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/28 16:22:27 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/12 21:13:04 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-void	pwd_func(t_tree *branch, int fd)
+void	pwd_func(int fd)
 {
 	char	*tmp;
 

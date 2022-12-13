@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 11:26:18 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/28 15:48:41 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:11:30 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	go_buy_milk(t_tree *branch, int n)
 	ft_putstr_fd("exit\nshell: exit ", 2);
 	ft_putstr_fd(((char **)(branch->token))[1], 2);
 	ft_putendl_fd(": numeric argument required", 2);
-	//free_tree();
+	free_tree(branch);
 	rl_clear_history();
 	exit(2);
 	return ;
@@ -55,9 +55,7 @@ void	go_buy_milk(t_tree *branch, int n)
 void	exit_func(t_tree *branch)
 {
 	int	n;
-	int	i;
 
-	i = 0;
 	n = 0;
 	if (((char **)(branch->token))[1] && is_num(((char **)(branch->token))[1]))
 		n = 1;

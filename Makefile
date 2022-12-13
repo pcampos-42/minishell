@@ -6,7 +6,7 @@
 #    By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/12 16:48:46 by lucas-ma         ###   ########.fr        #
+#    Updated: 2022/12/13 01:04:17 by lucas-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,8 +74,8 @@ LIBS    =        -lft -lreadline
 all: deps $(NAME)
 
 $(_OBJ)%.o: $(_SRC)%.c
-	@$(MKD) -p $(@D)
-	$(CC) $(CF) -c $< -o $@
+	$(MKD) -p $(@D)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): deps $(OBJS)
 	$(CC) $(CFLAGS)  $(OBJS) -o $(NAME) -L $(_LIB) $(LIBS)
