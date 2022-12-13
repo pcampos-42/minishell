@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/11/22 12:22:31 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/13 13:00:19 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,23 @@ void	add_node_on_right(t_tree *current, t_tree *new_node);
 //------------------------------UPDATE_NODE-----------------------------//
 t_tree	*update_node(t_tree *node, char *token);
 
+//------------------------------UPDATE_TOKEN----------------------------//
+char	*update_token(char *token, char *new_token, int *i, t_list *env);
+
 //------------------------------ADD_NEW_NODES---------------------------//
 void	add_new_node(t_tree **tree, t_tree *node);
+
+//------------------------------EXPANDER--------------------------------//
+char	*expand_str(char *s, t_list *env);
+
+//------------------------------EXPANDER_UTILS--------------------------//
+char	*token_join(char *s1, char *s2);
+char	*strjoin_char(char *str, char c);
+t_list	*exist_env_var(t_list *env, char *var_name);
+
+//------------------------------SYNTAX_ERROR----------------------------//
+int		syntax_error(t_tree *tree, char *token);
+int		error_analysis(t_tree *tree, char *token);
+int		branch_analysis(t_tree *node);
 
 #endif

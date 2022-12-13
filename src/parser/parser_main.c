@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:00:21 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/13 01:18:38 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/13 11:39:09 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ t_tree	*parser_main(char *s, t_list *env)
 	while (1)
 	{
 		token = get_token(s, reset);
-		// if (syntax_error(tree, token))
-		// {
-		// 	g_exit_status = 2;
-		// 	return (NULL);
-		// }
+		if (syntax_error(tree, token))
+		{
+			g_exit_status = 2;
+			return (NULL);
+		}
 		if (!token)
 			break ;
 		token_type = get_token_id(token);

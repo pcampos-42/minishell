@@ -6,7 +6,7 @@
 #    By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/13 01:04:17 by lucas-ma         ###   ########.fr        #
+#    Updated: 2022/12/13 13:13:09 by lucas-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,10 @@ SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)parser/token_treat.c \
 				 $(_SRC)parser/tree_utils.c \
 				 $(_SRC)parser/update_node.c \
+				 $(_SRC)parser/update_token.c \
+				 $(_SRC)parser/expander.c \
+				 $(_SRC)parser/expander_utils.c \
+				 $(_SRC)parser/syntax_error.c \
 				 $(_SRC)redir/redir.c \
 				 
 OBJS    =        $(patsubst $(_SRC)%.c,$(_OBJ)%.o,$(SRCS))

@@ -65,3 +65,5 @@ MINISHELL v0.7 - (lucas)corrigi o Makefile e as funcoes que tinham variaveis des
                         tentei arranjar o maximo a norminette que deu, estou de momento a tratar
 						das unclosed quotes e das expansoes, deixo tudo funcional apesar de estar 
 						muita coisa mexida
+
+MINISHELL v0.7 - (lucas)
