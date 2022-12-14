@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:20:53 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/07 16:38:44 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/12 21:47:06 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	free_tree(t_tree *tree)
 	if (!tree)
 		return ;
 	if (tree->left)
-		free_node(tree->left);
+		free_tree(tree->left);
 	if (tree->right)
-		free_node(tree->right);
+		free_tree(tree->right);
+	free_node(tree);
 }

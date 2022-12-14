@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:53:20 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/11/22 12:19:50 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:49:53 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	is_node_red(t_tree *node)
 {
 	if (!node)
 		return (0);
-	if (node->type >= E_IN && node->type <= E_APPEND)
+	if (node->type >= E_IN && node->type <= E_HDOC)
 		return (1);
 	return (0);
 }

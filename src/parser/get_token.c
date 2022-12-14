@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_token.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:30:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/11/22 12:23:01 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:13:04 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	get_quotes_size(char *s, char c)
 	count = 0;
 	while (s[count])
 	{
-		if (s[count] == c)
+		if (s[count] == c && ((s[count + 1] == '\0')
+				|| ft_is(s[count + 1], " \t\r\n\v\f<>|")))
 			return (count);
 		count++;
 	}
@@ -73,14 +74,6 @@ char	*get_word(char *s, int *i)
 	return (token);
 }
 
-	/*	Enquanto existir str
-		verificar se e igual a um operador
-		se for mandar pra uma funcao que trata disso
-		senao verificar se e um white space 
-		se for mandar pra uma funcao que trata disso
-		verificar se entrou em algum dos 2 de cima e voltou com token
-		se sim retornar o token
-		senao so continua a andar na str */
 char	*get_token(char *s, int reset)
 {
 	static int	i = 0;

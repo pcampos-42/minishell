@@ -59,3 +59,11 @@ MINISHELL v0.4 - afinal falta o builtin do exit que ja ta feito
 MINISHELL v0.5 - ja fiz tanta merda que nem sei o que meter aqui
                  os pipes funcionam mas alguns comandos tao na merda
                  e ainda falta fazer as redirecoes
+MINISHELL v0.6 - (lucas)Teoricamente a tree já coloca as redirecoes nos sitios corretos
+
+MINISHELL v0.7 - (lucas)corrigi o Makefile e as funcoes que tinham variaveis desnecessarias, 
+                        tentei arranjar o maximo a norminette que deu, estou de momento a tratar
+						das unclosed quotes e das expansoes, deixo tudo funcional apesar de estar 
+						muita coisa mexida
+
+MINISHELL v0.7 - (lucas)

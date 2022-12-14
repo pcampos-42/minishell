@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/11/28 16:25:44 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/12 21:13:39 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_args(char **token, int fd, int i);
 void	print_args_nl(char **token, int fd, int i);
 
 //------------------------------PWD_FUNC------------------------------//
-void	pwd_func(t_tree *branch, int fd);
+void	pwd_func(int fd);
 
 //------------------------------ECHO_FUNC------------------------------//
 void	echo_func(t_tree *branch, int fd);

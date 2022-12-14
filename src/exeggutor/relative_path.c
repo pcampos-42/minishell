@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   relative_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:14:24 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/07 16:27:59 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/13 00:11:09 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	is_path(char *str, char *path)
 char	*get_cmd_path(char **path, char *cmd)
 {
 	char	*tmp;
-	char	*tmp2;
 	int		i;
 
 	i = -1;
