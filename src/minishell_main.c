@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/13 13:55:06 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/15 21:25:02 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,37 @@
 
 int	g_exit_status = 0;
 
-// static int	skip_quotes(char *str, int *i)
-// {
-// 	char	c;
+static int	skip_quotes(char *str, int *i)
+{
+	char	c;
 
-// 	c = str[(*i)++];
-// 	while (str[*i])
-// 	{
-// 		if (str[*i] == c)
-// 			return (1);
-// 		(*i)++;
-// 	}
-// 	return (0);
-// }	
+	c = str[(*i)++];
+	while (str[*i])
+	{
+		if (str[*i] == c)
+			return (0);
+		(*i)++;
+	}
+	return (1);
+}	
 
-// static int	check_syntax(char *str)
-// {
-// 	int	i;
+static int	check_syntax(char *str)
+{
+	int	i;
 
-// 	i = 0;
-// 	if (str[0] == '|')
-// 		return (1);
-// 	while (str[i])
-// 	{
-// 		if (ft_strchr("\'\"", str[i]) && skip_quotes(str, &i))
-// 			return (2);
-// 		if (str[i] == '|' && str[i + 1] == '|')
-// 			return (3);
-// 		i++;
-// 	}
-// 	return (0);
-// }
+	i = 0;
+	if (str[0] == '|')
+		return (1);
+	while (str[i])
+	{
+		if (ft_strchr("\'\"", str[i]) && skip_quotes(str, &i))
+			return (2);
+		if (str[i] == '|' && str[i + 1] == '|')
+			return (3);
+		i++;
+	}
+	return (0);
+}
 
 void	main_util(t_tree *root, t_list *env)
 {
@@ -79,6 +79,7 @@ int	main(int ac, char **av, char **envp)
 	char	*str;
 	t_list	*env;
 	t_tree	*root;
+	int		error;
 
 	env = NULL;
 	get_env(&env, envp);
@@ -89,14 +90,20 @@ int	main(int ac, char **av, char **envp)
 		str = readline("GigaSHELL > ");
 		if (!str)
 			break ;
-		// error = check_syntax(str);
-		// if (error)
-		// {
-		// 	print_error(error);
-		// 	free(str);
-		// 	g_exit_status = 2;
-		// 	continue ;
-		// }
+		if (ft_strlen(str) == 0)
+		{
+			free(str);
+			continue ;
+		}
+		error = check_syntax(str);
+		if (error)
+		{
+			print_error(error);
+			free(str);
+			g_exit_status = 2;
+			add_history(str);
+			continue ;
+		}
 		add_history(str);
 		root = parser_main(str, env);
 		main_util(root, env);

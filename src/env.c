@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:38:52 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/05 16:22:22 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/15 22:11:54 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ char	**env_matrix(t_list *env)
 	i = 0;
 	tmp = env;
 	size = ft_lstsize(env);
-	matrix = malloc(sizeof(char *) * size + 1);
+	matrix = malloc(sizeof(char *) * (size + 1));
 	while (tmp->next != NULL)
 	{
 		matrix[i++] = tmp->content;
 		tmp = tmp->next;
 	}
 	matrix[i] = tmp->content;
+	matrix[++i] = NULL;
 	return (matrix);
 }

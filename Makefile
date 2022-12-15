@@ -6,7 +6,7 @@
 #    By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/13 13:13:09 by lucas-ma         ###   ########.fr        #
+#    Updated: 2022/12/15 21:09:18 by lucas-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ _BIN    =        ./
 ############### COMPILER ################
 
 CC      =        gcc
-CFLAGS      =        -Wall -Werror -Wextra #-g -fsanitize=address
+CFLAGS      =        -Wall -Werror -Wextra -g -fsanitize=address
 SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)free_funcs.c \
 				 $(_SRC)env.c \
@@ -105,9 +105,11 @@ $(_SRC):
 $(_BIN):
 	$(MKD) $(_BIN)libs/libft.a
 
+clean:
+	$(RMV) -r $(_OBJ)
+
 fclean: clean
 	$(RMV) -r $(NAME)
-	$(RMV) -r $(_OBJ)
 	$(RMV) -r $(_LIB)libft.a
 
 re: fclean all
