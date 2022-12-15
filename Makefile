@@ -6,7 +6,7 @@
 #    By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/15 17:23:02 by pcampos-         ###   ########.fr        #
+#    Updated: 2022/12/15 21:09:18 by lucas-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,9 +105,11 @@ $(_SRC):
 $(_BIN):
 	$(MKD) $(_BIN)libs/libft.a
 
+clean:
+	$(RMV) -r $(_OBJ)
+
 fclean: clean
 	$(RMV) -r $(NAME)
-	$(RMV) -r $(_OBJ)
 	$(RMV) -r $(_LIB)libft.a
 
 re: fclean all

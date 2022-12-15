@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 09:33:51 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/11/22 12:19:43 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/15 21:46:36 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	print_matrix(char **mat)
 	i = 0;
 	while (mat[i])
 	{
-		printf("%s-", mat[i]);
+		printf("%s\n", mat[i]);
 		i++;
 	}
 	printf("\n");

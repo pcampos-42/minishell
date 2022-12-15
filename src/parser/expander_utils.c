@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:34:48 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/13 10:44:15 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/15 20:57:17 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 char	*strjoin_char(char *str, char c)
 {
-	char	*new;
+	char	new[2];
 	char	*token;
 
-	new = malloc(2);
 	new[0] = c;
 	new[1] = '\0';
 	token = token_join(str, new);
@@ -51,6 +50,5 @@ char	*token_join(char *s1, char *s2)
 	if (s1 && s2)
 		new = ft_strjoin(s1, s2);
 	free_str(s1);
-	free_str(s2);
 	return (new);
 }

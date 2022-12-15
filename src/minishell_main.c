@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/15 17:22:56 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/15 21:25:02 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int	main(int ac, char **av, char **envp)
 			print_error(error);
 			free(str);
 			g_exit_status = 2;
+			add_history(str);
 			continue ;
 		}
 		add_history(str);
