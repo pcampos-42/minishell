@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:38:09 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/12 21:13:57 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:18:33 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	print_args(char **token, int fd, int i)
 {
+	if (!token[i])
+		return ;
 	while (token[i + 1])
 	{
 		ft_putstr_fd(token[i++], fd);
@@ -24,6 +26,8 @@ void	print_args(char **token, int fd, int i)
 
 void	print_args_nl(char **token, int fd, int i)
 {
+	if (!token[i])
+		return (ft_putchar_fd('\n', fd));
 	while (token[i + 1])
 	{
 		ft_putstr_fd(token[i++], fd);
