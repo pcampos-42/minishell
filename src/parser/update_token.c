@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:34:48 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/13 09:32:31 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/16 17:35:29 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*update_token(char *token, char *new_token, int *index, t_list *env)
 			str = mem_guard(ft_substr(&token[i], 0, size));
 			str = expand_str(str, env);
 		}
-		new_token = token_join(new_token, str);
+		new_token = token_join(new_token, str, 1);
 		*index += size - 1;
 	}
 	else

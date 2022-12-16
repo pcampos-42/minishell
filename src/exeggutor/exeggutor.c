@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:59:14 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/16 19:53:59 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:51:37 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	exeggutor(t_tree **root, t_list **env, int c)
 {
 	t_tree		*tree;
 	t_exec		exec;
+	int			val;
 
 	exec.fd = 0;
 	exec.n_c = c;
@@ -33,7 +34,8 @@ void	exeggutor(t_tree **root, t_list **env, int c)
 			exec.c--;
 		}
 	}
-	waitpid(exec.pid, &g_exit_status, 0);
+	waitpid(exec.pid, &val, 0);
+	g_exit_status = WEXITSTATUS(val);
 	while (exec.n_c--)
 		wait(NULL);
 }

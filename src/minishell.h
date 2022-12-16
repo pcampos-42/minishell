@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/16 19:05:37 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:59:50 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 //------------------------------GLOBAL_VARS------------------------------//
 extern int	g_exit_status;
+//extern unsigned char	g_exit_status;
 
 //------------------------------STRUCTS------------------------------//
 typedef enum e_type
@@ -67,7 +68,7 @@ typedef struct s_exec
 	int		doc;
 }					t_exec;
 
-//------------------------------ENV------------------------------//
+//------------------------------ENV-------------------------------------//
 void	get_env(t_list **env, char **envp);
 void	print_env(t_list *env, int fd);
 char	**env_matrix(t_list *env);
@@ -77,7 +78,7 @@ void	free_matrix(char **matrix);
 void	free_str(char *str);
 void	free_tree(t_tree *tree);
 
-//------------------------------BUILTINS------------------------------//
+//------------------------------BUILTINS--------------------------------//
 void	builtins(t_tree *branch, t_list **env, int fd);
 
 //------------------------------EXEGGUTOR------------------------------//
@@ -90,7 +91,7 @@ void	child_labor(t_tree *tree, t_list *env, t_exec *exec);
 char	*cmd_path(char *cmd, t_list *env);
 char	*absolute_path(char *cmd);
 
-//------------------------------RELATIVE_PATH------------------------------//
+//------------------------------RELATIVE_PATH---------------------------//
 char	*relative_path(char *cmd, t_list *env);
 char	*get_path(char *env, char *cmd);
 char	*get_cmd_path(char **path, char *cmd);
@@ -114,10 +115,13 @@ void	no_doc(t_tree *branch, t_exec *exec, int i);
 //------------------------------PARSER_MAIN-----------------------------//
 t_tree	*parser_main(char *s, t_list *env);
 
-//------------------------------PARSE_UTILS2---------------------------//
+//------------------------------PARSE_UTILS2----------------------------//
 int		is_node_red(t_tree *node);
 int		is_node_cmd(t_tree *node);
 int		is_node_pipe(t_tree *node);
+
+//------------------------------MAIN_UTILS------------------------------//
+void	print_error(int i);
 
 void	print2d(t_tree *root);
 

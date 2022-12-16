@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+         #
+#    By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/16 17:39:18 by pcampos-         ###   ########.fr        #
+#    Updated: 2022/12/16 19:11:32 by lucas-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ _BIN    =        ./
 CC      =        cc
 CFLAGS      =        -Wall -Werror -Wextra -g -fsanitize=address
 SRCS    =        $(_SRC)minishell_main.c \
+				 $(_SRC)main_utils.c \
 				 $(_SRC)free_funcs.c \
 				 $(_SRC)env.c \
 				 $(_SRC)print_tree.c \

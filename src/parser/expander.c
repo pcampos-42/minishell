@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:34:48 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/13 11:16:39 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:53:34 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*expand_var(char *s, char *token, int *i, t_list *env)
 {
 	t_list	*cursor;
 	char	*var_name;
+	char	*temp;
 	int		size_of_expansion;
 
 	size_of_expansion = get_size(&s[*i + 1]);
@@ -63,7 +64,12 @@ char	*expand_var(char *s, char *token, int *i, t_list *env)
 		var_name = ft_substr(&s[*i + 1], 0, size_of_expansion);
 		cursor = exist_env_var(env, var_name);
 		if (cursor && cursor->content)
-			token = token_join(token, ft_strdup(cursor->content));
+		{
+			temp = ft_strchr(cursor->content, '=');
+			if (temp)
+				token = token_join(token, ft_substr(temp, 1, \
+				ft_strlen(temp)), 1);
+		}
 		free_str(var_name);
 		*i += size_of_expansion;
 	}
@@ -83,12 +89,12 @@ char	*expand_str(char *s, t_list *env)
 		if (s[i] != '$')
 		{
 			size = size_word(s);
-			token = token_join(token, ft_substr(&s[i], 0, size));
+			token = token_join(token, ft_substr(&s[i], 0, size), 1);
 			i += size - 1;
 		}
 		else if (s[i] == '$' && s[i + 1] && (s[i + 1] == '?'))
 		{
-			token = token_join(token, ft_itoa(g_exit_status));
+			token = token_join(token, ft_itoa(g_exit_status), 1);
 			i += 1;
 		}
 		else if (s[i] == '$')
