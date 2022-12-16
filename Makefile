@@ -6,7 +6,7 @@
 #    By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/15 21:09:18 by lucas-ma         ###   ########.fr        #
+#    Updated: 2022/12/16 17:39:18 by pcampos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,12 @@ _BIN    =        ./
 
 ############### COMPILER ################
 
-CC      =        gcc
+CC      =        cc
 CFLAGS      =        -Wall -Werror -Wextra -g -fsanitize=address
 SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)free_funcs.c \
 				 $(_SRC)env.c \
+				 $(_SRC)print_tree.c \
 				 $(_SRC)builtins/builtins.c \
 				 $(_SRC)builtins/cd_func.c \
 				 $(_SRC)builtins/declare_x.c \
@@ -68,6 +69,8 @@ SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)parser/expander_utils.c \
 				 $(_SRC)parser/syntax_error.c \
 				 $(_SRC)redir/redir.c \
+				 $(_SRC)redir/heredoc_utils.c \
+				 $(_SRC)redir/redir_built.c \
 				 
 OBJS    =        $(patsubst $(_SRC)%.c,$(_OBJ)%.o,$(SRCS))
 DEPS    =        libft.a
