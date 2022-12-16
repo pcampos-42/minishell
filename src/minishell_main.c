@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/15 21:25:02 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/16 02:10:35 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,18 @@ static int	check_syntax(char *str)
 	return (0);
 }
 
-void	main_util(t_tree *root, t_list *env)
+void	main_util(char *str, t_list **env)
 {
-	int	c;
+	t_tree	*root;
+	int		c;
 
 	c = 1;
+	root = parser_main(str, *env);
+	if (!root)
+	{
+		free_str(str);
+		return ;
+	}
 	if (root->left)
 	{
 		c++;
@@ -60,31 +67,27 @@ void	main_util(t_tree *root, t_list *env)
 			c++;
 		}
 	}
-	exeggutor(&root, &env, c);
+	exeggutor(&root, env, c);
+	free_str(str);
+	free_tree(root);
 }
 
 void	print_error(int i)
 {
 	ft_putstr_fd("syntax error near unexpected token `", STDERR_FILENO);
-	if (i != 2)
+	if (i == 2)
+		ft_putstr_fd("\"", STDERR_FILENO);
+	else if (i == 1 || i == 3)
 		ft_putstr_fd("|", STDERR_FILENO);
 	else
 		ft_putstr_fd("newline", STDERR_FILENO);
 	ft_putstr_fd("'\n", STDERR_FILENO);
 }
 
-// 33 linhas tem o main
-int	main(int ac, char **av, char **envp)
+void	make_readline(t_list **env)
 {
 	char	*str;
-	t_list	*env;
-	t_tree	*root;
-	int		error;
 
-	env = NULL;
-	get_env(&env, envp);
-	(void)ac;
-	(void)av;
 	while (1)
 	{
 		str = readline("GigaSHELL > ");
@@ -92,24 +95,37 @@ int	main(int ac, char **av, char **envp)
 			break ;
 		if (ft_strlen(str) == 0)
 		{
+			g_exit_status = 0;
 			free(str);
 			continue ;
 		}
-		error = check_syntax(str);
-		if (error)
+		if (check_syntax(str))
 		{
-			print_error(error);
-			free(str);
+			print_error(check_syntax(str));
 			g_exit_status = 2;
 			add_history(str);
+			free(str);
 			continue ;
 		}
 		add_history(str);
-		root = parser_main(str, env);
-		main_util(root, env);
-		free(str);
-		free_tree(root);
-	}
+		main_util(str, env);
+	}	
+}
+
+// 33 linhas tem o main
+int	main(int ac, char **av, char **envp)
+{
+	t_list				*env;
+	struct termios		term;
+	struct termios		term2;
+
+	env = NULL;
+	get_env(&env, envp);
+	(void)ac;
+	(void)av;
+	(void)term;
+	(void)term2;
+	make_readline(&env);
 	rl_clear_history();
 	if (env)
 		ft_lstclear(&env, free);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_func.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 10:58:02 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/23 11:40:44 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/16 01:38:46 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	cd_func(t_tree *branch, t_list **env)
 	if (check_valid_path(branch))
 	{
 		printf("Path Invalido\n");
+		g_exit_status = 1;
 		return ;
 	}
 	do_cd(branch, env);

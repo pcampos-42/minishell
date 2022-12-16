@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/09 22:20:28 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/16 01:03:20 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,20 @@
 //------------------------------INCLUDES------------------------------//
 # include "../libft/libft.h"
 # include <stdio.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
 # include <sys/wait.h>
-# include <sys/types.h>
+# include <signal.h>
 # include <sys/stat.h>
+# include <sys/types.h>
 # include <dirent.h>
+# include <string.h>
+# include <sys/ioctl.h>
+# include <termios.h>
+# include <errno.h>
 
 //------------------------------DEFINES------------------------------//
 # define OPERATORS		"<>|"

@@ -6,11 +6,12 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:14:24 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/15 22:16:37 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/16 00:07:17 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "../parser/parser.h"
 
 int	is_path(char *str, char *path)
 {
@@ -56,7 +57,7 @@ char	*get_path(char *env, char *cmd)
 
 	if (ft_strncmp(env, "PATH=", 5))
 		return (NULL);
-	tmp = ft_split(env + 5, ':');
+	tmp = ft_split(env, ':');
 	tmp2 = ft_strjoin("/", cmd);
 	return (get_cmd_path(tmp, tmp2));
 }

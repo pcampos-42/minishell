@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:34:48 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/13 11:16:39 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/16 02:21:26 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,20 @@ char	*expand_var(char *s, char *token, int *i, t_list *env)
 {
 	t_list	*cursor;
 	char	*var_name;
+	char	*tmp;
 	int		size_of_expansion;
 
 	size_of_expansion = get_size(&s[*i + 1]);
+	tmp = NULL;
 	if (!size_of_expansion)
 		token = strjoin_char(token, s[*i]);
 	else
 	{
 		var_name = ft_substr(&s[*i + 1], 0, size_of_expansion);
 		cursor = exist_env_var(env, var_name);
+		tmp = ft_strchr(cursor->content, '=');
 		if (cursor && cursor->content)
-			token = token_join(token, ft_strdup(cursor->content));
+			token = token_join(token, ft_substr(tmp, 1, ft_strlen(tmp)));
 		free_str(var_name);
 		*i += size_of_expansion;
 	}
