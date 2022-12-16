@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   exeggutor.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:59:14 by pcampos-          #+#    #+#             */
 /*   Updated: 2022/12/16 18:51:37 by lucas-ma         ###   ########.fr       */
@@ -11,12 +11,6 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int	redir_built(t_tree *tree)
-{
-	(void)tree;
-	return (1);
-}
 
 void	exeggutor(t_tree **root, t_list **env, int c)
 {
@@ -29,7 +23,7 @@ void	exeggutor(t_tree **root, t_list **env, int c)
 	exec.c = c;
 	tree = *root;
 	if (!tree->parent && tree->type == E_BUILT)
-		builtins(tree, env, redir_built(tree));
+		builtins(tree, env, redir_built(tree, &exec));
 	else
 	{
 		start_tree(tree, *env, &exec);
@@ -79,15 +73,20 @@ void	do_comand(t_tree *tree, t_list *env, t_exec *exec)
 
 void	child_labor(t_tree *tree, t_list *env, t_exec *exec)
 {
+	char	**m_env;
+
+	m_env = env_matrix(env);
 	close(tree->p[0]);
 	redir(tree, exec);
 	rl_clear_history();
 	if (tree->type == E_BUILT)
 	{
 		builtins(tree, &env, 1);
+		free(m_env);
 		exit(g_exit_status);
 	}
 	execve(cmd_path(((char **)tree->token)[0], env),
-		tree->token, env_matrix(env));
+		tree->token, m_env);
+	free_matrix(m_env);
 	exit(127);
 }

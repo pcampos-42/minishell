@@ -37,12 +37,13 @@ _BIN    =        ./
 
 ############### COMPILER ################
 
-CC      =        gcc
+CC      =        cc
 CFLAGS      =        -Wall -Werror -Wextra -g -fsanitize=address
 SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)main_utils.c \
 				 $(_SRC)free_funcs.c \
 				 $(_SRC)env.c \
+				 $(_SRC)print_tree.c \
 				 $(_SRC)builtins/builtins.c \
 				 $(_SRC)builtins/cd_func.c \
 				 $(_SRC)builtins/declare_x.c \
@@ -69,6 +70,8 @@ SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)parser/expander_utils.c \
 				 $(_SRC)parser/syntax_error.c \
 				 $(_SRC)redir/redir.c \
+				 $(_SRC)redir/heredoc_utils.c \
+				 $(_SRC)redir/redir_built.c \
 				 
 OBJS    =        $(patsubst $(_SRC)%.c,$(_OBJ)%.o,$(SRCS))
 DEPS    =        libft.a
