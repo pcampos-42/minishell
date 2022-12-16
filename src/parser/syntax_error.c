@@ -6,13 +6,13 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:34:48 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/13 12:59:41 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:09:45 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static void	print_error(char *token)
+static void	exib_error(char *token)
 {
 	ft_putstr_fd("syntax error near unexpected token `", STDERR_FILENO);
 	if (token)
@@ -28,7 +28,7 @@ int	error_analysis(t_tree *tree, char *token)
 
 	if (!token && is_node_pipe(tree) && !tree->right)
 	{
-		print_error(token);
+		exib_error(token);
 		return (1);
 	}
 	if (is_node_pipe(tree))
@@ -37,7 +37,7 @@ int	error_analysis(t_tree *tree, char *token)
 		node = tree;
 	if (branch_analysis(node))
 	{
-		print_error(token);
+		exib_error(token);
 		return (1);
 	}
 	return (0);

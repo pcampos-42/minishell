@@ -6,7 +6,7 @@
 #    By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 11:11:06 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/16 00:03:34 by lucas-ma         ###   ########.fr        #
+#    Updated: 2022/12/13 00:06:20 by lucas-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ _LIBS	=	../libs/
 
 CC	= gcc
 CF	= -Wall -Wextra -Werror
-AR	= ar rc
+AR	= ar rcs
 
 #---------------------------------- FILES -------------------------------------#
 
@@ -59,10 +59,11 @@ all: $(NAME)
 $(_OBJ)%.o: $(_SRC)%.c
 	$(CC) $(CF) -c $< -o $@
 
-$(NAME): $(_LIBS) $(_OBJ) $(OBJS)
-			$(AR) $(_LIBS)$(NAME) $(OBJS)
+$(NAME): $(_LIBS) $(_LIBS)$(NAME)
+$(_LIBS)$(NAME): $(_OBJ) $(OBJS)
+	$(AR) $(_LIBS)$(NAME) $(OBJS)
 
-bonus:	$(_LIBS) $(NAME) $(_OBJ) $(BONUS_OBJS)
+bonus:	$(_LIBS) $(_LIBS)$(NAME) $(BONUS_OBJS)
 			$(AR) $(_LIBS)$(NAME) $(BONUS_OBJS)
 
 #---------------------------- DIRECTORIES CREATION ---------------------------#

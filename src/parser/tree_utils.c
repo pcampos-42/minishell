@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:19:55 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/11/22 12:20:22 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:20:45 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	add_node_on_right(t_tree *node, t_tree *new_node)
 {
 	if (!node || !new_node)
 		return ;
-	if ((node->right))
+	if (node->right)
 	{
 		new_node->left = node->right;
 		node->right->parent = new_node;

@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:30:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/12 23:13:04 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:37:20 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	get_quotes_size(char *s, char c)
 	{
 		if (s[count] == c && ((s[count + 1] == '\0')
 				|| ft_is(s[count + 1], " \t\r\n\v\f<>|")))
-			return (count);
+			return (count + 1);
 		count++;
 	}
 	return (1);
@@ -53,24 +53,21 @@ char	*get_word(char *s, int *i)
 {
 	int		j;
 	char	*token;
-	char	*seps;
 
 	j = *i;
 	token = NULL;
-	seps = ft_strjoin(WHITE_SPACE, OPERATORS);
 	while (s[j])
 	{
-		if (ft_is(s[j], "\""))
+		if (s[j] && ft_is(s[j], "\""))
 			j += get_quotes_size(&s[j + 1], s[j]);
-		if (ft_is(s[j], "'"))
+		if (s[j] && ft_is(s[j], "'"))
 			j += get_quotes_size(&s[j + 1], s[j]);
-		if (ft_is(s[j], seps))
+		if (!s[j] || ft_is(s[j], " \t\r\n\v\f<>|"))
 			break ;
 		j++;
 	}
 	token = ft_substr(s, *i, j - (*i));
 	*i = j;
-	free(seps);
 	return (token);
 }
 

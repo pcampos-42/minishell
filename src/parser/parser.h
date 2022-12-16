@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/13 13:00:19 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/16 17:35:10 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	add_new_node(t_tree **tree, t_tree *node);
 char	*expand_str(char *s, t_list *env);
 
 //------------------------------EXPANDER_UTILS--------------------------//
-char	*token_join(char *s1, char *s2);
+char	*token_join(char *s1, char *s2, int o);
 char	*strjoin_char(char *str, char c);
 t_list	*exist_env_var(t_list *env, char *var_name);
 
