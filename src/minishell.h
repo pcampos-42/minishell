@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/16 21:07:32 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/17 06:29:27 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <sys/ioctl.h>
 # include <signal.h>
 # include <termios.h>
+# include <stdbool.h>
 # include <errno.h>
 # include "../libft/libft.h"
 
@@ -137,10 +138,14 @@ int		is_node_pipe(t_tree *node);
 //------------------------------MAIN_UTILS------------------------------//
 void	print_error(int i);
 void	attr_setting(struct termios *term, t_list **env);
+char	*make_signals(struct termios *term, t_list *env, struct termios *term2);
 void	prep_termios(struct termios *term, struct termios *term2, t_list **env);
 
 //------------------------------SIGNAL_HANDLER--------------------------//
 void	call_sigact(char act_choice, t_list **env);
+
+//------------------------------WAIT_CMDS.C-----------------------------//
+void	wait_cmds(int last_pid, int n_cmds, t_list *env);
 
 void	print2d(t_tree *root);
 

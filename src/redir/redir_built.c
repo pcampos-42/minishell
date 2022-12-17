@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_built.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:12:47 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/16 19:33:40 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/17 04:56:44 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	redir_built_in(t_tree *branch)
 				if (open(branch->token, O_RDONLY, 0644) == -1)
 					redir_error(branch);
 			}
-			/*else
-				heredoc();*/
 		}
 	}
 }

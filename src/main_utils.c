@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/16 23:58:47 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/17 06:28:02 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,24 @@ void	attr_setting(struct termios *term, t_list **env)
 			ft_lstclear(env, free);
 		exit(1);
 	}
+}
+
+char	*make_signals(struct termios *term, t_list *env, struct termios *term2)
+{
+	char	*str;
+
+	call_sigact(SI_RLINE, &env);
+	attr_setting(term, &env);
+	str = readline("GigaSHELL > ");
+	if (!str)
+	{
+		attr_setting(term2, &env);
+		free_str(str);
+		if (env)
+			ft_lstclear(&env, free);
+		ft_putendl_fd("Error: No line!", 2);
+		exit(g_exit_status);
+	}
+	call_sigact(SI_IGN, &env);
+	return (str);
 }

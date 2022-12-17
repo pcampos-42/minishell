@@ -6,7 +6,7 @@
 #    By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/17 02:33:55 by lucas-ma         ###   ########.fr        #
+#    Updated: 2022/12/17 05:49:38 by lucas-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)exeggutor/exeggutor.c \
 				 $(_SRC)exeggutor/path_utils.c \
 				 $(_SRC)exeggutor/relative_path.c \
+				 $(_SRC)exeggutor/wait_cmds.c \
 				 $(_SRC)parser/parser_main.c \
 				 $(_SRC)parser/add_new_nodes.c \
 				 $(_SRC)parser/build_tree.c \
