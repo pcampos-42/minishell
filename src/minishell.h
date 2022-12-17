@@ -14,7 +14,6 @@
 # define MINISHELL_H
 
 //------------------------------INCLUDES------------------------------//
-# include "../libft/libft.h"
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdlib.h>
@@ -25,6 +24,11 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <dirent.h>
+# include <sys/ioctl.h>
+# include <signal.h>
+# include <termios.h>
+# include <errno.h>
+# include "../libft/libft.h"
 
 //------------------------------DEFINES------------------------------//
 # define OPERATORS		"<>|"
@@ -32,7 +36,6 @@
 
 //------------------------------GLOBAL_VARS------------------------------//
 extern int	g_exit_status;
-//extern unsigned char	g_exit_status;
 
 //------------------------------STRUCTS------------------------------//
 typedef enum e_type
@@ -46,6 +49,14 @@ typedef enum e_type
 	E_HDOC,
 	E_BUILT
 }	t_type;
+
+typedef enum e_sigtype
+{
+	SI_IGN,
+	SI_HDOC,
+	SI_RLINE,
+	SI_DFL
+}	t_sigtype;
 
 typedef struct s_tree
 {
@@ -125,6 +136,11 @@ int		is_node_pipe(t_tree *node);
 
 //------------------------------MAIN_UTILS------------------------------//
 void	print_error(int i);
+void	attr_setting(struct termios *term, t_list **env);
+void	prep_termios(struct termios *term, struct termios *term2, t_list **env);
+
+//------------------------------SIGNAL_HANDLER--------------------------//
+void	call_sigact(char act_choice, t_list **env);
 
 void	print2d(t_tree *root);
 

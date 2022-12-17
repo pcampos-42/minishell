@@ -23,6 +23,7 @@ void	exeggutor(t_tree **root, t_list **env, int c)
 	exec.c = c;
 	exec.doc = 0;
 	tree = *root;
+	call_sigact(SI_DFL, env);
 	if (!tree->parent && tree->type == E_BUILT)
 		builtins(tree, env, redir_built(tree, &exec));
 	else

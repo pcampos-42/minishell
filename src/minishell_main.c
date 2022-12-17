@@ -68,44 +68,58 @@ void	main_util(char *str, t_list **env)
 	free_tree(root);
 }
 
-void	make_readline(t_list **env)
+void	make_readline(t_list **env, struct termios *term, \
+struct termios *term2)
 {
 	char	*str;
 
 	while (1)
 	{
 		str = readline("GigaSHELL > ");
+		call_sigact(SI_RLINE, env);
+		attr_setting(term, env);
+		call_sigact(SI_IGN, env);
 		if (!str)
+		{
+			attr_setting(term2, env);
 			break ;
-		if (ft_strlen(str) == 0)
-		{
-			g_exit_status = 0;
-			free(str);
-			continue ;
 		}
-		if (check_syntax(str))
+		if (ft_strlen(str) != 0)
 		{
-			print_error(check_syntax(str));
-			g_exit_status = 2;
 			add_history(str);
+			if (check_syntax(str))
+			{
+				print_error(check_syntax(str));
+				g_exit_status = 2;
+				free(str);
+				continue ;
+			}
+			main_util(str, env);
 			free(str);
-			continue ;
 		}
-		add_history(str);
-		main_util(str, env);
-		free(str);
 	}
 }
 
 int	main(int ac, char **av, char **envp)
 {
-	t_list	*env;
+	t_list				*env;
+	struct termios		term;
+	struct termios		term2;
 
 	env = NULL;
 	get_env(&env, envp);
+	if (isatty(STDIN_FILENO) != 1 || !env)
+	{
+		if (env)
+			ft_lstclear(&env, free);
+		ft_putstr_fd("GigaSHELL: ", STDERR_FILENO);
+		perror("attributes setting failed");
+		exit(errno);
+	}
 	(void)ac;
 	(void)av;
-	make_readline(&env);
+	prep_termios(&term, &term2, &env);
+	make_readline(&env, &term, &term2);
 	rl_clear_history();
 	if (env)
 		ft_lstclear(&env, free);

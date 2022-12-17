@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_func.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:15:49 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/28 16:25:27 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/17 00:32:13 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	do_export(char *str, t_list **env)
 	tnv = *env;
 	while (tnv)
 	{
-		if (!strchr(str, '=') && !ft_strncmp((char *)tnv->content, str,
+		if (!ft_strchr(str, '=') && !ft_strncmp((char *)tnv->content, str,
 				ft_strlen((char *)tnv->content)))
 			return (ft_update(&tnv, str));
 		if (!ft_strncmp((char *)tnv->content, str,
