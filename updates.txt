@@ -75,3 +75,6 @@ MINISHELL v0.9 - leaks relativos a path resolvidos
                  falta heredoc
 
 MINISHELL v0.10 - inicio do heredoc
+
+MINISHELL v1.0 - heredoc feito, apenas uns pequenos remendos a serem feitos
+                 ver se os sinais do lucas batem bem com o resto do codigo

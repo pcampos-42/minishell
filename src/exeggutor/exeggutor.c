@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:59:14 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/16 21:35:46 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/17 05:59:09 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	exeggutor(t_tree **root, t_list **env, int c)
 	t_exec		exec;
 	int			val;
 
+	exec.env = *env;
 	exec.fd = 0;
 	exec.n_c = c;
 	exec.c = c;
-	exec.doc = 0;
 	tree = *root;
 	call_sigact(SI_DFL, env);
 	if (!tree->parent && tree->type == E_BUILT)
@@ -64,7 +64,7 @@ void	do_comand(t_tree *tree, t_list *env, t_exec *exec)
 		ft_putendl_fd("Error: Fork failed", 2);
 	if (exec->pid == 0)
 		child_labor(tree, env, exec);
-	if (tree->parent)
+	if (exec->c != 1)
 	{
 		if (exec->fd > 0)
 			close(exec->fd);

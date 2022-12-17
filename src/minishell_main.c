@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/16 21:58:56 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/17 05:28:51 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	main_util(char *str, t_list **env)
 	root = parser_main(str, *env);
 	if (!root)
 		return ;
-	if (root->left)
+	if (root->left && !is_node_red(root->left))
 	{
 		c++;
 		while (root->left->type == E_PIPE)
