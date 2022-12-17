@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+         #
+#    By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 11:11:06 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/13 00:06:20 by lucas-ma         ###   ########.fr        #
+#    Updated: 2022/12/16 21:11:38 by pcampos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ FILES	= ft_isascii.c ft_isprint.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 			ft_memset.c ft_bzero.c ft_memmove.c ft_striteri.c ft_memcpy.c \
 			ft_memchr.c ft_memcmp.c ft_strdup.c ft_calloc.c ft_itoa.c \
 			ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-			ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_strmapi.c
+			ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_strmapi.c \
+			get_next_line.c
 			
 BONUS_FILES	= ft_lstsize.c ft_lstlast.c ft_lstadd_front.c ft_lstadd_back.c \
 			ft_lstnew.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstmap.c

@@ -72,4 +72,6 @@ MINISHELL v0.8 - flag do echo tratada
 MINISHELL v0.9 - leaks relativos a path resolvidos
                  output redirs feitas
                  input redir feito
-                 falta here doc
+                 falta heredoc
+
+MINISHELL v0.10 - inicio do heredoc
