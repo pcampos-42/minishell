@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:14:24 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/16 22:11:43 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/17 02:30:42 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ char	*get_cmd_path(char **path, char *cmd)
 		if (is_path(cmd, tmp))
 		{
 			free_matrix(path);
+			free(cmd);
 			return (tmp);
 		}
 		free(tmp);
 	}
 	free_matrix(path);
+	free(cmd);
 	return (NULL);
 }
 
@@ -56,9 +58,15 @@ char	*get_path(char *env, char *cmd)
 
 	if (ft_strncmp(env, "PATH=", 5))
 		return (NULL);
-	tmp = ft_split(env + 5, ':');
+	tmp = ft_split(env, ':');
 	tmp2 = ft_strjoin("/", cmd);
 	return (get_cmd_path(tmp, tmp2));
+}
+
+void	rlp_error_msg(char *cmd)
+{
+	ft_putstr_fd(cmd, 2);
+	ft_putendl_fd(": Command not found", 2);
 }
 
 char	*relative_path(char *cmd, t_list *env)
@@ -86,5 +94,6 @@ char	*relative_path(char *cmd, t_list *env)
 		free(path);
 		tenv = tenv->next;
 	}
+	rlp_error_msg(cmd);
 	return (NULL);
 }

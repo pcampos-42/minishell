@@ -74,6 +74,9 @@ typedef struct s_exec
 	int		c;
 	int		fd;
 	int		pid;
+	int		in;
+	int		out;
+	int		doc;
 }					t_exec;
 
 //------------------------------ENV-------------------------------------//
@@ -95,9 +98,6 @@ void	start_tree(t_tree *tree, t_list *env, t_exec *exec);
 void	do_comand(t_tree *tree, t_list *env, t_exec *exec);
 void	child_labor(t_tree *tree, t_list *env, t_exec *exec);
 
-//------------------------------REDIR-----------------------------------//
-void	redir(t_tree *branch, t_exec *exec);
-
 //------------------------------PATH_UTILS------------------------------//
 char	*cmd_path(char *cmd, t_list *env);
 char	*absolute_path(char *cmd);
@@ -107,6 +107,21 @@ char	*relative_path(char *cmd, t_list *env);
 char	*get_path(char *env, char *cmd);
 char	*get_cmd_path(char **path, char *cmd);
 int		is_path(char *str, char *path);
+
+//------------------------------REDIR------------------------------//
+void	redir(t_tree *branch, t_exec *exec);
+void	n_redirs(t_tree *branch, t_exec *exec);
+void	redir_in(t_tree *branch, t_exec *exec);
+void	redir_out(t_tree *branch, t_exec *exec);
+void	redir_error(t_tree *branch);
+
+//------------------------------REDIR_BUILT------------------------------//
+int		redir_built(t_tree *branch, t_exec *exec);
+void	redir_built_in(t_tree *branch);
+int		redir_built_out(t_tree *branch, t_exec *exec);
+
+//------------------------------HEREDOC_UTILS------------------------------//
+void	no_doc(t_tree *branch, t_exec *exec, int i);
 
 //------------------------------PARSER_MAIN-----------------------------//
 t_tree	*parser_main(char *s, t_list *env);
@@ -123,5 +138,7 @@ void	prep_termios(struct termios *term, struct termios *term2, t_list **env);
 
 //------------------------------SIGNAL_HANDLER--------------------------//
 void	call_sigact(char act_choice, t_list **env);
+
+void	print2d(t_tree *root);
 
 #endif

@@ -68,4 +68,8 @@ MINISHELL v0.7 - (lucas)corrigi o Makefile e as funcoes que tinham variaveis des
 						muita coisa mexida
 
 MINISHELL v0.8 - flag do echo tratada
-                 
+
+MINISHELL v0.9 - leaks relativos a path resolvidos
+                 output redirs feitas
+                 input redir feito
+                 falta here doc
