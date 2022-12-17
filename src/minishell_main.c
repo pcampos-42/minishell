@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
 /*   Updated: 2022/12/17 05:28:51 by pcampos-         ###   ########.fr       */
@@ -75,15 +75,7 @@ struct termios *term2)
 
 	while (1)
 	{
-		str = readline("GigaSHELL > ");
-		call_sigact(SI_RLINE, env);
-		attr_setting(term, env);
-		call_sigact(SI_IGN, env);
-		if (!str)
-		{
-			attr_setting(term2, env);
-			break ;
-		}
+		str = make_signals(term, *env, term2);
 		if (ft_strlen(str) != 0)
 		{
 			add_history(str);
@@ -119,6 +111,7 @@ int	main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 	prep_termios(&term, &term2, &env);
+	
 	make_readline(&env, &term, &term2);
 	rl_clear_history();
 	if (env)

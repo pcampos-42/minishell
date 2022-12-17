@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   redir_built.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:12:47 by pcampos-          #+#    #+#             */
 /*   Updated: 2022/12/17 05:43:52 by pcampos-         ###   ########.fr       */

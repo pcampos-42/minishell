@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   exeggutor.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:59:14 by pcampos-          #+#    #+#             */
 /*   Updated: 2022/12/17 05:59:09 by pcampos-         ###   ########.fr       */
@@ -16,14 +16,12 @@ void	exeggutor(t_tree **root, t_list **env, int c)
 {
 	t_tree		*tree;
 	t_exec		exec;
-	int			val;
 
 	exec.env = *env;
 	exec.fd = 0;
 	exec.n_c = c;
 	exec.c = c;
 	tree = *root;
-	call_sigact(SI_DFL, env);
 	if (!tree->parent && tree->type == E_BUILT)
 		builtins(tree, env, redir_built(tree, &exec));
 	else
@@ -36,10 +34,7 @@ void	exeggutor(t_tree **root, t_list **env, int c)
 			exec.c--;
 		}
 	}
-	waitpid(exec.pid, &val, 0);
-	g_exit_status = WEXITSTATUS(val);
-	while (exec.n_c--)
-		wait(NULL);
+	wait_cmds(exec.pid, c, *env);
 }
 
 void	start_tree(t_tree *tree, t_list *env, t_exec *exec)

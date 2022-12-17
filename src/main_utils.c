@@ -57,3 +57,23 @@ void	attr_setting(struct termios *term, t_list **env)
 		exit(1);
 	}
 }
+
+char	*make_signals(struct termios *term, t_list *env, struct termios *term2)
+{
+	char	*str;
+
+	call_sigact(SI_RLINE, &env);
+	attr_setting(term, &env);
+	str = readline("GigaSHELL > ");
+	if (!str)
+	{
+		attr_setting(term2, &env);
+		free_str(str);
+		if (env)
+			ft_lstclear(&env, free);
+		ft_putendl_fd("Error: No line!", 2);
+		exit(g_exit_status);
+	}
+	call_sigact(SI_IGN, &env);
+	return (str);
+}
