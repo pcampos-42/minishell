@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/16 18:59:50 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/16 21:07:32 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,9 @@ int		redir_built_out(t_tree *branch, t_exec *exec);
 
 //------------------------------HEREDOC_UTILS------------------------------//
 void	no_doc(t_tree *branch, t_exec *exec, int i);
+void	handle_heredoc(t_tree *branch, t_exec *exec, int i);
+void	fill_heredoc(t_tree *branch, int fd);
+void	fake_heredoc(t_tree *branch);
 
 //------------------------------PARSER_MAIN-----------------------------//
 t_tree	*parser_main(char *s, t_list *env);

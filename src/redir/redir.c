@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:01:49 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/16 19:29:52 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/16 23:59:43 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,14 @@ void	redir_in(t_tree *branch, t_exec *exec)
 	exec->doc = 0;
 	while (branch->left)
 	{
+		branch = branch->left;
 		if (branch->type == E_IN || branch->type == E_HDOC)
 		{
-			branch = branch->left;
 			i--;
 			if (branch->type == E_IN)
 				no_doc(branch, exec, i);
 			else
-			{
-				if (i == exec->in)
-					dup2(branch->p[0], STDIN_FILENO);
-				exec->doc = 1;
-			}
+				handle_heredoc(branch, exec, i);
 		}
 	}
 }
