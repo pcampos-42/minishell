@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/17 05:28:51 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/17 07:40:41 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int	main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 	prep_termios(&term, &term2, &env);
-	
 	make_readline(&env, &term, &term2);
 	rl_clear_history();
 	if (env)

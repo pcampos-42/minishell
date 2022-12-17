@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:14:20 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/17 06:10:38 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/17 07:25:32 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,13 @@ static void	handle_signals(int sig, siginfo_t *info, void *ucontext)
 {
 	(void)info;
 	(void)ucontext;
-	if (sig == SIGQUIT)
+	if (sig == SIGINT)
 	{
-		ft_putendl_fd("exit", 2);
-		exit(g_exit_status);
-	}
-	else if (sig == SIGINT)
-	{
-		g_exit_status = 130;
 		rl_replace_line("", 0);
 		ft_putstr_fd("\n", STDOUT_FILENO);
 		rl_on_new_line();
 		rl_redisplay();
+		g_exit_status = 130;
 	}
 }
 
@@ -35,12 +30,7 @@ static void	handle_signals_heredoc(int sig, siginfo_t *info, void *ucontext)
 {
 	(void)info;
 	(void)ucontext;
-	if (sig == SIGQUIT)
-	{
-		ft_putendl_fd("exit", 2);
-		exit(g_exit_status);
-	}
-	else if (sig == SIGINT)
+	if (sig == SIGINT)
 	{
 		g_exit_status = 130;
 		close(STDIN_FILENO);

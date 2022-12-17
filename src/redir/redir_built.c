@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:12:47 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/17 05:43:52 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/17 07:34:28 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	redir_built_out(t_tree *branch, t_exec *exec)
 
 int	redir_built(t_tree *branch, t_exec *exec)
 {
+	call_sigact(SI_HDOC, &(exec->env));
 	n_redirs(branch, exec);
 	if (exec->in > 0)
 		redir_built_in(branch);
