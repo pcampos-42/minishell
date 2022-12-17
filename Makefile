@@ -6,7 +6,7 @@
 #    By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/16 19:11:32 by lucas-ma         ###   ########.fr        #
+#    Updated: 2022/12/16 22:08:42 by lucas-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)main_utils.c \
 				 $(_SRC)free_funcs.c \
 				 $(_SRC)env.c \
+				 $(_SRC)signal_handler.c \
 				 $(_SRC)builtins/builtins.c \
 				 $(_SRC)builtins/cd_func.c \
 				 $(_SRC)builtins/declare_x.c \

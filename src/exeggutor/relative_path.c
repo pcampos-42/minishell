@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:14:24 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/15 22:16:37 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/16 22:11:43 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	is_path(char *str, char *path)
 		ft_putstr_fd(str, 2);
 		ft_putendl_fd(" is a directory", 2);
 		g_exit_status = 126;
-		exit(126);
+		exit(g_exit_status);
 	}
 	if (access(path, X_OK) >= 0)
 		return (1);
