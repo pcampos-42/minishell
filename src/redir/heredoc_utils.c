@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 23:51:10 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/17 05:57:26 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/17 07:33:15 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	handle_heredoc(t_tree *branch, t_exec *exec, int i)
 {
 	int	fd;
 
+	call_sigact(SI_HDOC, &(exec->env));
 	if (i != exec->in)
 	{
 		fake_heredoc(branch);

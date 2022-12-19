@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/17 04:56:53 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/17 07:22:56 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*make_signals(struct termios *term, t_list *env, struct termios *term2)
 		free_str(str);
 		if (env)
 			ft_lstclear(&env, free);
-		ft_putendl_fd("Error: No line!", 2);
+		ft_putendl_fd("Exit", 2);
 		exit(g_exit_status);
 	}
 	call_sigact(SI_IGN, &env);
