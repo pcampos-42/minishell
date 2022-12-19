@@ -6,50 +6,47 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 05:47:29 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/17 07:38:04 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:41:51 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static void	wait_last_cmd(int pid)
+static void	wait_last_cmd(int pid, t_list *env)
 {
 	int	status;
 
+	call_sigact(SI_IGN, &env);
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		g_exit_status = WEXITSTATUS(status);
-	if (WIFSIGNALED(status))
+	else if (WIFSIGNALED(status))
 	{
-		if (status < 130)
+		g_exit_status = 128 + status;
+		if (g_exit_status == 130)
+			ft_putchar_fd('\n', STDOUT_FILENO);
+		else if (g_exit_status > 130)
 		{
-			ft_putstr_fd("\n", STDERR_FILENO);
-			g_exit_status = status + 128;
+			ft_putendl_fd("Quit (core dumped)", STDOUT_FILENO);
+			g_exit_status = 131;
 		}
-		else
-			g_exit_status = status;
-	}		
+	}
 }
 
-static void	wait_missing_cmds(int n_cmds, t_list *env)
+static void	wait_missing_cmds(int n_cmds)
 {
 	int	status;
-	int	signal;
 
-	signal = 0;
 	n_cmds--;
-	call_sigact(SI_IGN, &env);
 	while (n_cmds)
 	{
 		wait(&status);
-		if (WIFSIGNALED(status) && status == SIGINT)
-		signal = 1;
-		n_cmds--;
+			n_cmds--;
 	}
 }
 
 void	wait_cmds(int last_pid, int n_cmds, t_list *env)
 {
-	wait_last_cmd(last_pid);
-	wait_missing_cmds(n_cmds, env);
+	wait_last_cmd(last_pid, env);
+	wait_missing_cmds(n_cmds);
 }
