@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
 /*   Updated: 2022/12/19 18:47:50 by lucas-ma         ###   ########.fr       */
@@ -92,7 +92,7 @@ void	free_str(char *str);
 void	free_tree(t_tree *tree);
 
 //------------------------------BUILTINS--------------------------------//
-void	builtins(t_tree *branch, t_list **env, int fd);
+void	builtins(t_tree *branch, t_exec *exec, int fd);
 
 //------------------------------EXEGGUTOR------------------------------//
 void	exeggutor(t_tree **root, t_list **env, int c);
@@ -101,8 +101,8 @@ void	do_comand(t_tree *tree, t_list *env, t_exec *exec);
 void	child_labor(t_tree *tree, t_list *env, t_exec *exec);
 
 //------------------------------PATH_UTILS------------------------------//
-char	*cmd_path(char *cmd, t_list *env);
-char	*absolute_path(char *cmd);
+char	*cmd_path(char *cmd, t_list *env, char **m_env);
+char	*absolute_path(char *cmd, char **m_env);
 
 //------------------------------RELATIVE_PATH---------------------------//
 char	*relative_path(char *cmd, t_list *env);

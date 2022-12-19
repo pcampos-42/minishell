@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   exeggutor.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:59:14 by pcampos-          #+#    #+#             */
 /*   Updated: 2022/12/19 19:41:00 by lucas-ma         ###   ########.fr       */
@@ -79,11 +79,11 @@ void	child_labor(t_tree *tree, t_list *env, t_exec *exec)
 	rl_clear_history();
 	if (tree->type == E_BUILT)
 	{
-		builtins(tree, &env, 1);
+		builtins(tree, exec, 1);
 		free(m_env);
 		exit(g_exit_status);
 	}
-	execve(cmd_path(((char **)tree->token)[0], env),
+	execve(cmd_path(((char **)tree->token)[0], env, m_env),
 		tree->token, m_env);
 	free_matrix(m_env);
 	if (exec->doc == 1)

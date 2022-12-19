@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 12:42:27 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/23 14:56:56 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:25:02 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ void	unset_func(t_tree *branch, t_list **env)
 	{
 		unset_mid(branch, tmp, tmp2);
 	}
+	g_exit_status = 0;
 }

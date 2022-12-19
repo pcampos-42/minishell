@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 11:26:18 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/16 22:12:29 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 20:11:45 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	is_num(char *str)
 	return (0);
 }
 
-void	go_buy_milk(t_tree *branch, int n)
+void	go_buy_milk(t_tree *branch, int n, t_list *env)
 {
 	if (n && ((char **)(branch->token))[2])
 	{
@@ -48,11 +48,13 @@ void	go_buy_milk(t_tree *branch, int n)
 	ft_putendl_fd(": numeric argument required", 2);
 	free_tree(branch);
 	rl_clear_history();
+	if (env)
+		ft_lstclear(&env, free);
 	exit(2);
 	return ;
 }
 
-void	exit_func(t_tree *branch)
+void	exit_func(t_tree *branch, t_list *env)
 {
 	int	n;
 
@@ -61,15 +63,19 @@ void	exit_func(t_tree *branch)
 		n = 1;
 	if ((n && !((char **)(branch->token))[2]) || !((char **)(branch->token))[1])
 	{
-		ft_putstr_fd("exit\n", 2);
+		ft_putstr_fd("exit\n", 1);
 		if (n)
 		{
 			g_exit_status = ft_atoi(((char **)(branch->token))[1]);
 			rl_clear_history();
+			if (env)
+				ft_lstclear(&env, free);
 			exit(g_exit_status);
 		}
 		rl_clear_history();
+		if (env)
+			ft_lstclear(&env, free);
 		exit(g_exit_status);
 	}
-	return (go_buy_milk(branch, n));
+	return (go_buy_milk(branch, n, env));
 }

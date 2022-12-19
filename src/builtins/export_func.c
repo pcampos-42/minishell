@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_func.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:15:49 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/17 00:32:13 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:19:16 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,5 @@ void	export_func(t_tree *branch, t_list **env, int fd)
 		return (declare_x(*env, fd));
 	while (((char **)branch->token)[++i])
 		do_export(((char **)branch->token)[i], env);
+	g_exit_status = 0;
 }
