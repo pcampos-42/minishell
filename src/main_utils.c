@@ -6,7 +6,7 @@
 /*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/17 07:22:56 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:08:28 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ char	*make_signals(struct termios *term, t_list *env, struct termios *term2)
 		exit(g_exit_status);
 	}
 	call_sigact(SI_IGN, &env);
+	attr_setting(term2, &env);
 	return (str);
 }

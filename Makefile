@@ -6,7 +6,7 @@
 #    By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/17 05:49:38 by lucas-ma         ###   ########.fr        #
+#    Updated: 2022/12/19 18:02:11 by lucas-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,6 @@ SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)free_funcs.c \
 				 $(_SRC)env.c \
 				 $(_SRC)signal_handler.c \
-				 $(_SRC)print_tree.c \
 				 $(_SRC)builtins/builtins.c \
 				 $(_SRC)builtins/cd_func.c \
 				 $(_SRC)builtins/declare_x.c \
@@ -76,7 +75,7 @@ SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)redir/redir_built.c \
 				 
 OBJS    =        $(patsubst $(_SRC)%.c,$(_OBJ)%.o,$(SRCS))
-DEPS    =        libft.a
+DEPS    =        ./libs/libft.a
 LIBS    =        -lft -lreadline
 
 ################ RULES ##################
@@ -87,26 +86,15 @@ $(_OBJ)%.o: $(_SRC)%.c
 	$(MKD) -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): deps $(OBJS)
+$(NAME): $(DEPS) $(OBJS)
 	$(CC) $(CFLAGS)  $(OBJS) -o $(NAME) -L $(_LIB) $(LIBS)
 
 ################ DEPS ###################
 
-deps: $(DEPS)
-
-libft.a:
-	$(MKE) bonus -C libft/
+./libs/libft.a:
+	$(MKE) -C libft/
 
 ############## STRUCTURE ################
-
-$(_OBJ):
-	$(MKD) $(_OBJ)
-
-$(_LIB):
-	$(MKD) $(_LIB)
-
-$(_SRC):
-	$(MKD) $(_SRC)
 
 $(_BIN):
 	$(MKD) $(_BIN)libs/libft.a
