@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:57:46 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/11/23 12:54:20 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:19:23 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ void	declare_x(t_list *env, int fd)
 			special_print(tenv->content, fd);
 		tenv = tenv->next;
 	}
+	g_exit_status = 0;
 }

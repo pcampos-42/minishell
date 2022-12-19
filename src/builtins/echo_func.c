@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 12:46:13 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/15 17:16:09 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:07:03 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	echo_func(t_tree *branch, int fd)
 		print_args(((char **)(branch->token)), fd, 2);
 	else
 		print_args_nl(((char **)(branch->token)), fd, 1);
+	g_exit_status = 0;
 }

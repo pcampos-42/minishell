@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/17 07:40:41 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 11:25:33 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ static int	check_syntax(char *str)
 void	main_util(char *str, t_list **env)
 {
 	t_tree	*root;
+	t_tree	*fixed_root;
 	int		c;
 
 	c = 1;
 	root = parser_main(str, *env);
+	fixed_root = root;
 	if (!root)
 		return ;
 	if (root->left && !is_node_red(root->left))
@@ -65,7 +67,7 @@ void	main_util(char *str, t_list **env)
 		}
 	}
 	exeggutor(&root, env, c);
-	free_tree(root);
+	free_tree(fixed_root);
 }
 
 void	make_readline(t_list **env, struct termios *term, \

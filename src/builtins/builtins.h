@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/12 21:13:39 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:53:32 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ char	*prepare_quote(char *str);
 char	*put_quote(char *str);
 
 //------------------------------EXIT_FUNC------------------------------//
-void	exit_func(t_tree *branch);
+void	exit_func(t_tree *branch, t_list *env);
 int		is_num(char *str);
-void	go_buy_milk(t_tree *branch, int n);
+void	go_buy_milk(t_tree *branch, int n, t_list *env);
 
 #endif

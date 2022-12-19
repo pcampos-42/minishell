@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+         #
+#    By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/17 05:49:38 by lucas-ma         ###   ########.fr        #
+#    Updated: 2022/12/19 11:39:36 by pcampos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,6 @@ SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)free_funcs.c \
 				 $(_SRC)env.c \
 				 $(_SRC)signal_handler.c \
-				 $(_SRC)print_tree.c \
 				 $(_SRC)builtins/builtins.c \
 				 $(_SRC)builtins/cd_func.c \
 				 $(_SRC)builtins/declare_x.c \
