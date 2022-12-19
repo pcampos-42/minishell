@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 16:35:43 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/11/22 12:19:31 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/19 21:12:30 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ static char	*do_home_expansion(char *token, t_list *env, int size)
 		home = ft_substr(home, 5, ft_strlen(home) - 4);
 	else
 	{
-		home = ft_substr(home, 5, ft_strlen(home));
-		tmp = ft_substr(token, 1, ft_strlen(token));
+		home = mem_guard(ft_substr(home, 5, ft_strlen(home)));
+		tmp = mem_guard(ft_substr(token, 1, ft_strlen(token)));
 		home = ft_strjoin(home, tmp);
+		free(tmp);
 	}
 	return (home);
 }

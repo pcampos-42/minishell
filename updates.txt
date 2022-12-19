@@ -80,3 +80,5 @@ MINISHELL v1.0 - heredoc feito, apenas uns pequenos remendos a serem feitos
                  ver se os sinais do lucas batem bem com o resto do codigo
 
 MINISHELL v1.1 - Ultimos retoques.
+
+MINISHELL v1.2 - Ultimos retoques no cd
