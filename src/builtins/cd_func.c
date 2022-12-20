@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 10:58:02 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/17 08:29:10 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 20:44:08 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ int	search_wd(t_list *env, char *str, int i)
 void	cd_func(t_tree *branch, t_list **env)
 {
 	if (check_valid_path(branch))
-	{
-		printf("Path Invalido\n");
 		return ;
-	}
 	do_cd(branch, env);
 }
 
@@ -83,7 +80,10 @@ void	do_cd(t_tree *branch, t_list **env)
 	tmp->content = ft_strjoin("OLDPWD=", pwd);
 	free (pwd);
 	if (chdir(((char **)(branch->token))[1]) == -1)
+	{
+		ft_putendl_fd("Error: Can´t change directory", 2);
 		return ;
+	}
 	update_pwd(env, pwd, tmp);
 	g_exit_status = 0;
 }

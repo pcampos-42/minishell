@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmeira <fmeira@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 22:24:24 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/11/22 12:18:21 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:33:12 by fmeira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,5 @@ void	build_tree(char *token, int token_id, t_tree **tree)
 	}
 	else
 		add_new_node(tree, create_node(token_id));
+	free_str(token);
 }

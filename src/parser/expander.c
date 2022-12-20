@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmeira <fmeira@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:34:48 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/16 18:53:34 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:38:05 by fmeira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*expand_str(char *s, t_list *env)
 	int		size;
 	int		i;
 
-	token = mem_guard(ft_calloc(1, sizeof(char)));
+	token = NULL;
 	i = 0;
 	while (s[i])
 	{

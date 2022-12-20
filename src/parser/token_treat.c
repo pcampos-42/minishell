@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_treat.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmeira <fmeira@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:34:48 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/13 11:11:49 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:37:33 by fmeira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*treat_token(char *token, t_list *env)
 	if (!token_need_treat(token))
 		return (token);
 	i = 0;
-	new_token = mem_guard(calloc(1, sizeof(char)));
+	new_token = NULL;
 	while (token[i])
 	{
 		new_token = update_token(token, new_token, &i, env);

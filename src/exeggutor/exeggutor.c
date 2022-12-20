@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:59:14 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/19 19:41:00 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 20:17:15 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	exeggutor(t_tree **root, t_list **env, int c)
 	tree = *root;
 	call_sigact(SI_DFL, env);
 	if (!tree->parent && tree->type == E_BUILT)
-		return (builtins(tree, env, redir_built(tree, &exec)));
+		return (builtins(tree, &exec, redir_built(tree, &exec)));
 	else
 	{
 		start_tree(tree, *env, &exec);

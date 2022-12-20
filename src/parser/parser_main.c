@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmeira <fmeira@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:00:21 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/16 22:11:32 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:33:04 by fmeira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_tree	*parser_main(char *s, t_list *env)
 		if (syntax_error(tree, token))
 		{
 			g_exit_status = 2;
+			free_str(token);
 			return (NULL);
 		}
 		if (!token)
@@ -35,7 +36,6 @@ t_tree	*parser_main(char *s, t_list *env)
 		if (token_type == E_WORD)
 			token = treat_token(token, env);
 		build_tree(token, token_type, &tree);
-		free_str(token);
 		reset = 0;
 	}
 	return (tree);
