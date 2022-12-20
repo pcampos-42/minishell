@@ -23,6 +23,8 @@ void	exeggutor(t_tree **root, t_list **env, int c)
 	exec.c = c;
 	tree = *root;
 	call_sigact(SI_DFL, env);
+	if (!tree->parent && tree->type == E_HDOC)
+		return (fake_heredoc(tree));
 	if (!tree->parent && tree->type == E_BUILT)
 		return (builtins(tree, &exec, redir_built(tree, &exec)));
 	else
@@ -73,6 +75,8 @@ void	child_labor(t_tree *tree, t_list *env, t_exec *exec)
 {
 	char	**m_env;
 
+	if (tree->type == E_HDOC)
+		return (fake_heredoc(tree));
 	m_env = env_matrix(env);
 	close(tree->p[0]);
 	redir(tree, exec);

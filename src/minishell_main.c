@@ -92,7 +92,7 @@ struct termios *term2)
 			free_str(str);
 		}
 		else
-			free(str);
+			free_str(str);
 	}
 }
 
