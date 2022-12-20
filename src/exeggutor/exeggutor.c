@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:59:14 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/20 00:29:51 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/20 00:43:32 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	child_labor(t_tree *tree, t_list *env, t_exec *exec)
 {
 	char	**m_env;
 
+	if (tree->type == E_HDOC)
+		return (fake_heredoc(tree));
 	m_env = env_matrix(env);
 	close(tree->p[0]);
 	redir(tree, exec);
