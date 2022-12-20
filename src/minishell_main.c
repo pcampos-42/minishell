@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmeira <fmeira@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/19 18:57:24 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:57:01 by fmeira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	skip_quotes(char *str, int *i)
 		(*i)++;
 	}
 	return (1);
-}	
+}
 
 static int	check_syntax(char *str)
 {
@@ -89,8 +89,10 @@ struct termios *term2)
 				continue ;
 			}
 			main_util(str, env);
-			free(str);
+			free_str(str);
 		}
+		else
+			free_str(str);
 	}
 }
 

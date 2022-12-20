@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmeira <fmeira@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:34:48 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/16 17:34:32 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:36:16 by fmeira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*strjoin_char(char *str, char c)
 	new[0] = c;
 	new[1] = '\0';
 	token = token_join(str, new, 0);
+	free_str(str);
 	return (token);
 }
 

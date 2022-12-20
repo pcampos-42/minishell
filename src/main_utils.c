@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmeira <fmeira@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:57 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/19 19:08:28 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:55:29 by fmeira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*make_signals(struct termios *term, t_list *env, struct termios *term2)
 	call_sigact(SI_RLINE, &env);
 	attr_setting(term, &env);
 	str = readline("GigaSHELL > ");
-	if (!str)
+	if (!str && *str)
 	{
 		attr_setting(term2, &env);
 		free_str(str);

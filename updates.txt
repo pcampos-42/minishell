@@ -82,3 +82,6 @@ MINISHELL v1.0 - heredoc feito, apenas uns pequenos remendos a serem feitos
 MINISHELL v1.1 - Ultimos retoques.
 
 MINISHELL v1.2 - Ultimos retoques no cd
+
+MINISHELL v2.0 - Infelizmente nao passou mas ta rigo irmao
+                 hdoc ja funciona mesmo sozinho e tem tambem as mudancas feitas durante a avaliacao
