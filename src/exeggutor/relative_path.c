@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   relative_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:14:24 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/19 16:04:58 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/20 00:44:14 by lucas-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*get_cmd_path(char **path, char *cmd)
 	int		i;
 
 	i = -1;
+	tmp = NULL;
 	while (path[++i])
 	{
 		tmp = ft_strjoin(path[i], cmd);
@@ -56,6 +57,8 @@ char	*get_path(char *env, char *cmd)
 	char	**tmp;
 	char	*tmp2;
 
+	tmp = NULL;
+	tmp2 = NULL;
 	if (ft_strncmp(env, "PATH=", 5))
 		return (NULL);
 	tmp = ft_split(env, ':');
