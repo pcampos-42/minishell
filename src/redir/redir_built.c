@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_built.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:12:47 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/17 07:34:28 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/23 12:42:13 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,12 @@ int	redir_built(t_tree *branch, t_exec *exec)
 		return (redir_built_out(branch, exec));
 	else
 		return (1);
+}
+
+void	redir_error(t_tree *branch)
+{
+	ft_putstr_fd("Error: couldn't open file: ", 2);
+	ft_putstr_fd(branch->token, 2);
+	ft_putstr_fd("\n", 2);
+	exit(1);
 }

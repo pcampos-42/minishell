@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:14:24 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/19 16:04:58 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/23 14:10:41 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ int	is_path(char *str, char *path)
 {
 	struct stat	buf;
 
+	if (!path)
+		return (0);
+	ft_memset(&buf, 0, sizeof(buf));
 	lstat(path, &buf);
 	if (S_ISDIR(buf.st_mode))
 	{
@@ -75,6 +78,7 @@ char	*relative_path(char *cmd, t_list *env)
 	char	*tmp;
 	t_list	*tenv;
 
+	path = NULL;
 	tenv = env;
 	if (cmd[0] && cmd[0] == '.')
 	{
@@ -86,6 +90,7 @@ char	*relative_path(char *cmd, t_list *env)
 		if (is_path(cmd, path))
 			return (path);
 	}
+	free_str(path);
 	while (tenv)
 	{
 		path = get_path(tenv->content, cmd);

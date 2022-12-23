@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas-ma <lucas-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:01:49 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/17 07:31:58 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/23 13:59:52 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-// void	redir(t_tree *branch, t_exec *exec)
-// {
-// 	if (exec->fd != 0)
-// 		dup2(exec->fd, STDIN_FILENO);
-// 	if (exec->c > 1)
-// 		dup2(branch->p[1], STDOUT_FILENO);
-// 	close (branch->p[1]);
-// }
-
-void	redir_error(t_tree *branch)
-{
-	ft_putstr_fd("Error: couldn't open file: ", 2);
-	ft_putstr_fd(branch->token, 2);
-	ft_putstr_fd("\n", 2);
-	exit(1);
-}
 
 void	n_redirs(t_tree *branch, t_exec *exec)
 {
@@ -100,6 +83,11 @@ void	redir(t_tree *branch, t_exec *exec)
 	}
 	else
 		dup2(exec->fd, STDIN_FILENO);
+	redir_2(branch, exec);
+}
+
+void	redir_2(t_tree *branch, t_exec *exec)
+{
 	if (exec->out)
 	{
 		close(branch->p[1]);
@@ -110,6 +98,7 @@ void	redir(t_tree *branch, t_exec *exec)
 		if (exec->c > 1)
 		{
 			dup2(branch->p[1], STDOUT_FILENO);
+			close(branch->p[1]);
 		}
 		else
 			close(branch->p[1]);

@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:59:14 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/20 00:43:32 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/23 14:16:28 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	exeggutor(t_tree **root, t_list **env, int c)
 	t_tree		*tree;
 	t_exec		exec;
 
+	exec.doc = 0;
 	exec.env = *env;
 	exec.fd = 0;
 	exec.n_c = c;
@@ -69,15 +70,24 @@ void	do_comand(t_tree *tree, t_list *env, t_exec *exec)
 		close(tree->p[1]);
 		exec->fd = tree->p[0];
 	}
+	else
+	{
+		close(tree->p[0]);
+		close(tree->p[1]);
+		if (exec->fd > 0)
+			close(exec->fd);
+	}
 }
 
 void	child_labor(t_tree *tree, t_list *env, t_exec *exec)
 {
 	char	**m_env;
+	char	*path;
 
 	if (tree->type == E_HDOC)
 		return (fake_heredoc(tree));
 	m_env = env_matrix(env);
+	path = cmd_path(((char **)tree->token)[0], env, m_env);
 	close(tree->p[0]);
 	redir(tree, exec);
 	rl_clear_history();
@@ -87,9 +97,12 @@ void	child_labor(t_tree *tree, t_list *env, t_exec *exec)
 		free(m_env);
 		exit(g_exit_status);
 	}
-	execve(cmd_path(((char **)tree->token)[0], env, m_env),
-		tree->token, m_env);
+	if (path)
+		execve(path, tree->token, m_env);
 	free_matrix(m_env);
+	close(tree->p[1]);
+	close(tree->p[0]);
+	close(exec->fd);
 	if (exec->doc == 1)
 		unlink(".heredoc_tmp");
 	exit(127);

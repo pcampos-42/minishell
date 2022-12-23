@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/19 18:47:50 by lucas-ma         ###   ########.fr       */
+/*   Updated: 2022/12/23 13:51:16 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,13 @@ void	redir(t_tree *branch, t_exec *exec);
 void	n_redirs(t_tree *branch, t_exec *exec);
 void	redir_in(t_tree *branch, t_exec *exec);
 void	redir_out(t_tree *branch, t_exec *exec);
-void	redir_error(t_tree *branch);
+void	redir_2(t_tree *branch, t_exec *exec);
 
 //------------------------------REDIR_BUILT------------------------------//
 int		redir_built(t_tree *branch, t_exec *exec);
 void	redir_built_in(t_tree *branch);
 int		redir_built_out(t_tree *branch, t_exec *exec);
+void	redir_error(t_tree *branch);
 
 //------------------------------HEREDOC_UTILS------------------------------//
 void	no_doc(t_tree *branch, t_exec *exec, int i);
