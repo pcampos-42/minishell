@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:38:30 by lucas-ma          #+#    #+#             */
-/*   Updated: 2022/12/23 13:51:16 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/23 14:37:03 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,9 @@ char	*relative_path(char *cmd, t_list *env);
 char	*get_path(char *env, char *cmd);
 char	*get_cmd_path(char **path, char *cmd);
 int		is_path(char *str, char *path);
+
+//------------------------------RELATIVE_PATH_UTILS---------------------------//
+char	*rp_util(char *cmd, char *path, char *tmp);
 
 //------------------------------REDIR------------------------------//
 void	redir(t_tree *branch, t_exec *exec);

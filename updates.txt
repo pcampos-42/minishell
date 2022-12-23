@@ -87,3 +87,5 @@ MINISHELL v2.0.1 - Infelizmente nao passou mas ta rigo irmao
                    hdoc ja funciona mesmo sozinho e tem tambem as mudancas feitas durante a avaliacao
 
 MINISHELL v2.1 - Sera desta?
+
+MINISHELL v2.1.1 - Norminette

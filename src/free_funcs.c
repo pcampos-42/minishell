@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmeira <fmeira@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:20:53 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/19 23:10:11 by fmeira           ###   ########.fr       */
+/*   Updated: 2022/12/23 14:47:12 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_matrix(char **matrix)
 
 void	free_str(char *str)
 {
-	if (str && *str)
+	if (str)
 		free(str);
 }
 

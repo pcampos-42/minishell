@@ -6,7 +6,7 @@
 /*   By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:14:24 by pcampos-          #+#    #+#             */
-/*   Updated: 2022/12/23 14:10:41 by pcampos-         ###   ########.fr       */
+/*   Updated: 2022/12/23 14:37:23 by pcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char	*get_cmd_path(char **path, char *cmd)
 	int		i;
 
 	i = -1;
+	tmp = NULL;
 	while (path[++i])
 	{
 		tmp = ft_strjoin(path[i], cmd);
@@ -59,6 +60,8 @@ char	*get_path(char *env, char *cmd)
 	char	**tmp;
 	char	*tmp2;
 
+	tmp = NULL;
+	tmp2 = NULL;
 	if (ft_strncmp(env, "PATH=", 5))
 		return (NULL);
 	tmp = ft_split(env, ':');
@@ -80,15 +83,10 @@ char	*relative_path(char *cmd, t_list *env)
 
 	path = NULL;
 	tenv = env;
+	tmp = NULL;
 	if (cmd[0] && cmd[0] == '.')
 	{
-		path = getcwd(NULL, 0);
-		tmp = ft_strjoin(path, "/");
-		free(path);
-		path = ft_strjoin(tmp, cmd);
-		free(tmp);
-		if (is_path(cmd, path))
-			return (path);
+		return (rp_util(cmd, path, tmp));
 	}
 	free_str(path);
 	while (tenv)

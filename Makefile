@@ -6,7 +6,7 @@
 #    By: pcampos- <pcampos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 15:07:52 by lucas-ma          #+#    #+#              #
-#    Updated: 2022/12/23 11:02:09 by pcampos-         ###   ########.fr        #
+#    Updated: 2022/12/23 14:34:28 by pcampos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ _BIN    =        ./
 ############### COMPILER ################
 
 CC      =        cc
-CFLAGS      =        -Wall -Werror -Wextra -g #-fsanitize=address
+CFLAGS      =        -Wall -Werror -Wextra -g # -fsanitize=address
+#valgrind --leak-check=full --show-leak-kinds=all ./minishell
 SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)main_utils.c \
 				 $(_SRC)free_funcs.c \
@@ -55,6 +56,7 @@ SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)exeggutor/exeggutor.c \
 				 $(_SRC)exeggutor/path_utils.c \
 				 $(_SRC)exeggutor/relative_path.c \
+				 $(_SRC)exeggutor/relative_path_utils.c \
 				 $(_SRC)exeggutor/wait_cmds.c \
 				 $(_SRC)parser/parser_main.c \
 				 $(_SRC)parser/add_new_nodes.c \
@@ -73,7 +75,7 @@ SRCS    =        $(_SRC)minishell_main.c \
 				 $(_SRC)redir/redir.c \
 				 $(_SRC)redir/heredoc_utils.c \
 				 $(_SRC)redir/redir_built.c \
-				 
+
 OBJS    =        $(patsubst $(_SRC)%.c,$(_OBJ)%.o,$(SRCS))
 DEPS    =        ./libs/libft.a
 LIBS    =        -lft -lreadline
